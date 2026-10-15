@@ -73,14 +73,14 @@ Own mappings: put a `gamecontrollerdb.txt` in the settings folder
 ## Screenshots
 
 <p>
-  <img src="docs/screenshots/gameplay-1.png" width="32%" alt="Gameplay">
-  <img src="docs/screenshots/gameplay-2.png" width="32%" alt="Gameplay">
-  <img src="docs/screenshots/gameplay-3.png" width="32%" alt="Gameplay">
+  <img src="docs/screenshots/gameplay-1.png" width="32%" alt="Gabby Jay steps into the ring">
+  <img src="docs/screenshots/gameplay-2.png" width="32%" alt="Trading punches with Gabby Jay">
+  <img src="docs/screenshots/gameplay-3.png" width="32%" alt="A knockdown">
 </p>
 <p>
-  <img src="docs/screenshots/gameplay-4.png" width="32%" alt="Gameplay">
-  <img src="docs/screenshots/gameplay-5.png" width="32%" alt="Gameplay">
-  <img src="docs/screenshots/gameplay-6.png" width="32%" alt="Gameplay">
+  <img src="docs/screenshots/gameplay-4.png" width="32%" alt="Next up: Bear Hugger">
+  <img src="docs/screenshots/gameplay-5.png" width="32%" alt="Bear Hugger blocks">
+  <img src="docs/screenshots/gameplay-6.png" width="32%" alt="Landing a punch">
 </p>
 <p>
   <img src="docs/screenshots/launcher-main.png" width="49%" alt="The launcher">
@@ -92,7 +92,7 @@ Own mappings: put a `gamecontrollerdb.txt` in the settings folder
 </p>
 <p>
   <img src="docs/screenshots/ingame-menu.png" width="49%" alt="The in-game menu on Esc">
-  <img src="docs/screenshots/gameplay-7.png" width="49%" alt="Gameplay">
+  <img src="docs/screenshots/gameplay-7.png" width="49%" alt="Best times">
 </p>
 
 ## Building it yourself
