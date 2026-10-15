@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Super Punch-Out
+Comment=Super Punch-Out!! rebuilt as a native program (bring your own ROM)
+Exec=SuperPunchOut
+Icon=superpunchout
+Categories=Game;ArcadeGame;
+Terminal=false

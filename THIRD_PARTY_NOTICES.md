@@ -1,8 +1,12 @@
 # Third-party notices
 
-Top Gun 2 (TanookiStudios/TopGun2Recomp) is built on the components below. Their license texts follow.
+Super Punch-Out!! for PC (TanookiStudios/SuperPunchOutRecomp) is built on the components below. Their license texts follow.
 
-## NESRecomp (PolyForm Noncommercial License 1.0.0)
+This is a fan-made program. It contains no game data: you supply your own Super Punch-Out!! (USA) ROM.
+
+## snesrecomp, by Matthew Stanley (PolyForm Noncommercial License 1.0.0)
+
+The engine (SNES hardware model, desktop host, and launcher plumbing). Source: https://github.com/mstan/snesrecomp
 
 ```
 PolyForm Noncommercial License 1.0.0
@@ -104,7 +108,8 @@ For the avoidance of doubt, the licensor's intent is to restrict uses where
 profit is derived from this software. Non-profit personal, educational,
 or community use is welcome regardless of organizational context.
 
-For commercial licensing inquiries, contact: https://1379.tech
+For commercial licensing inquiries, contact the licensor, Matthew Stanley,
+at <https://1379.tech>.
 ```
 
 ## recomp-ui (MIT)
@@ -159,10 +164,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## SDL 2.32.10 (zlib)
+## SDL3 3.4.10 (zlib)
+
+Built from source and linked into the program.
 
 ```
-Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
+Copyright (C) 1997-2026 Sam Lantinga <slouken@libsdl.org>
   
 This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages
@@ -179,7 +186,6 @@ freely, subject to the following restrictions:
 2. Altered source versions must be plainly marked as such, and must not be
    misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
-
 ```
 
 ## SDL_GameControllerDB (zlib), assets/gamecontrollerdb.txt
@@ -203,6 +209,124 @@ freely, subject to the following restrictions:
    misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 ```
+
+## Code inside the snesrecomp engine (linked into the program)
+
+snesrecomp itself contains the third-party code below; its license notices must
+travel with the program, so they are reproduced here. Details and provenance:
+vendor/snesrecomp/THIRD_PARTY_ATTRIBUTION.md in the snesrecomp source.
+
+### snesrev (zelda3 / smw): the C SNES hardware core and runtime utilities (MIT)
+
+https://github.com/snesrev/zelda3 and https://github.com/snesrev/smw
+
+```
+Copyright (c) 2022 snesrev
+Copyright (c) 2023 snesrev
+Copyright (c) 2021 elzo_d
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### LakeSnes by angelo_wf: the 65816 interpreter core (MIT)
+
+https://github.com/angelo-wf/lakesnes
+
+```
+Copyright (c) 2021-2023 angelo_wf and contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### ares: Cx4, DSP-1 and SA-1 coprocessor cores (ISC)
+
+https://github.com/ares-emulator/ares
+
+```
+ares
+
+Copyright (c) 2004-2025 ares team, Near et al
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
+
+### S-DD1 decompression (public domain)
+
+Andreas Naive's S-DD1 algorithm code (via bsnes-plus), which states: "This code is Public Domain. There is no copyright holded by the author." Credit is kept as a courtesy.
+
+### Screen-color model (MIT)
+
+The screen-color tables derive from JRickey/gba-recomp (MIT OR Apache-2.0, used here under MIT) via mstan/psxrecomp.
+
+```
+MIT License
+
+Copyright (c) 2022 Jrickey
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### OpenGL loader and image loader
+
+The OpenGL 3.1 core loader is generated output of glLoadGen (Jason McKesson), which places no restriction on its output. stb_image (Sean Barrett) is public domain or MIT, at your option.
 
 ## Launcher fonts and images (shipped in assets/)
 

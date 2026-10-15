@@ -158,3 +158,15 @@ add_custom_command(TARGET SuperPunchOutRecomp POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:SuperPunchOutRecomp>/assets/img
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/assets/signature.png
             $<TARGET_FILE_DIR:SuperPunchOutRecomp>/assets/img/maddie-signature.png)
+
+# --- Windows release: GUI program with the icon built in (tools/make_windows_zip.sh) ---
+# GUI subsystem, so no console window opens behind the game, and the program
+# icon (assets/icon/superpunchout.ico) is embedded in the .exe. The Mac app
+# gets its icon from tools/make_app.sh instead.
+if(WIN32)
+    enable_language(RC)
+    set_target_properties(SuperPunchOutRecomp PROPERTIES WIN32_EXECUTABLE TRUE)
+    target_sources(SuperPunchOutRecomp PRIVATE
+        ${CMAKE_SOURCE_DIR}/assets/icon/superpunchout.rc)
+endif()
+# --- end Windows release ---

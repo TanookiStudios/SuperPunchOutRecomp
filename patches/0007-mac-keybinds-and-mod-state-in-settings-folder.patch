@@ -1,0 +1,40 @@
+diff --git a/runner/src/host_paths.c b/runner/src/host_paths.c
+index b7cc046..27c2047 100644
+--- a/runner/src/host_paths.c
++++ b/runner/src/host_paths.c
+@@ -186,9 +186,11 @@ int snesrecomp_exe_dir_path(const char *leaf, char *out, size_t max_len) {
+     char dir[1024];
+ #ifdef __APPLE__
+     /* Files the player's settings own (not the program's own assets). */
+-    if ((!strcmp(leaf, "config.ini") || !strcmp(leaf, "rom.cfg")) &&
++    if ((!strcmp(leaf, "config.ini") || !strcmp(leaf, "rom.cfg") ||
++         !strcmp(leaf, "keybinds.ini") || !strncmp(leaf, "mods/", 5)) &&
+         mac_user_dir(dir, sizeof(dir))) {
+         if (snprintf(out, max_len, "%s%s", dir, leaf) >= (int)max_len) return 0;
++        if (!strncmp(leaf, "mods/", 5)) mac_mkdir_p(out);   /* mod state is written here */
+         return 1;
+     }
+ #endif
+diff --git a/runner/src/keybinds.c b/runner/src/keybinds.c
+index 33aa3e7..121600f 100644
+--- a/runner/src/keybinds.c
++++ b/runner/src/keybinds.c
+@@ -5,6 +5,7 @@
+  * defaults when missing. Edit and restart to apply.
+  */
+ #include "keybinds.h"
++#include "host_paths.h"
+ 
+ #include <stdio.h>
+ #include <string.h>
+@@ -144,6 +145,10 @@ static const char *scancode_to_name(SDL_Scancode sc) {
+ static char s_ini_path[512] = {0};
+ 
+ static void derive_ini_path(const char *exe_path) {
++#ifdef __APPLE__
++    /* A downloaded Mac app is read-only: remaps live in the settings folder. */
++    if (snesrecomp_exe_dir_path("keybinds.ini", s_ini_path, sizeof(s_ini_path))) return;
++#endif
+     if (!exe_path || !*exe_path) {
+         strcpy(s_ini_path, "keybinds.ini");
+         return;
