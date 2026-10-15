@@ -1,0 +1,126 @@
+# lose three fights in a row: Game Over without the rest cheat, no Game Over with it
+#@ frames=30000
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+until 0000 == 01 6000
+until 0B21 == 00 3000
+poke 089F 00
+poke 089E 00
+wait 800
+poke 089F 00
+poke 089E 00
+wait 800
+poke 089F 00
+poke 089E 00
+wait 1000
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+until 0000 == 01 6000
+until 0B21 == 00 3000
+poke 089F 00
+poke 089E 00
+wait 800
+poke 089F 00
+poke 089E 00
+wait 800
+poke 089F 00
+poke 089E 00
+wait 1000
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+until 0000 == 01 6000
+until 0B21 == 00 3000
+poke 089F 00
+poke 089E 00
+wait 800
+poke 089F 00
+poke 089E 00
+wait 800
+poke 089F 00
+poke 089E 00
+wait 1000
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+press start 4
+wait 80
+dump g_after
+wait 600
+dump g_after2
+wait 600
+dump g_after3
+quit

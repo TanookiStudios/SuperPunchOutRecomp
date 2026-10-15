@@ -1,0 +1,25 @@
+# Hands off the controller for 6000 frames: intro, title, then the attract demos.
+#@ frames=6000
+wait 500
+dump a00
+wait 500
+dump a01
+wait 500
+dump a02
+wait 500
+dump a03
+wait 500
+dump a04
+wait 500
+dump a05
+wait 500
+dump a06
+wait 500
+dump a07
+wait 500
+dump a08
+wait 500
+dump a09
+wait 500
+dump a10
+wait 400

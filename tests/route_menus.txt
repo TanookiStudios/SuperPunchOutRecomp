@@ -1,0 +1,77 @@
+# Name entry, then the Mode select screen: opens the Button Setting screen (the cursor wraps there), presses a few keys, changes and resets buttons.
+#@ frames=6500
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 120
+press down 4
+wait 30
+press a 4
+wait 250
+dump v1a
+press down 4
+wait 30
+press a 4
+wait 250
+dump v1b
+press start 4
+wait 250
+dump v1c
+press b 4
+wait 150
+press b 4
+wait 150
+press b 4
+wait 150
+dump v1d
+press down 4
+wait 30
+press down 4
+wait 30
+press a 4
+wait 250
+dump v2a
+press down 4
+wait 30
+press a 4
+wait 250
+dump v2b
+press start 4
+wait 250
+dump v2c
+press b 4
+wait 150
+press b 4
+wait 150
+press b 4
+wait 150
+dump v2d
+press down 4
+wait 30
+press down 4
+wait 30
+press down 4
+wait 30
+press a 4
+wait 250
+dump v3a
+press down 4
+wait 30
+press a 4
+wait 250
+dump v3b
+press start 4
+wait 250
+dump v3c
+press b 4
+wait 150
+press b 4
+wait 150
+press b 4
+wait 150
+dump v3d

@@ -1,0 +1,472 @@
+# First fight, but the boxer's health is set to 1 before every punch round so a landed punch knocks him out: the game's own knockout, results, next-boxer card (Bear Hugger) and second fight run. Evidence dumps along the way.
+#@ frames=9000
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 300
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump ko00
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump ko01
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump ko02
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump ko03
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump ko04
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump ko05
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+poke 099F 01
+poke 098F 01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump ko06
+wait 900
+dump after_ko
+press start 4
+wait 300
+dump next_a
+press a 4
+wait 200
+press a 4
+wait 300
+dump next_b
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump f200
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump f201
+dump end

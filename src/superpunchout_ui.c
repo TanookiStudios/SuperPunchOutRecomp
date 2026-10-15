@@ -40,9 +40,9 @@ const RecompRuntimeUiItem kSpoMenuItems[SPO_MENU_ITEM_COUNT] = {
     { "spo.mute.5", "Audio", "Mute voice 6", MUTE_DESC, RECOMP_RUNTIME_UI_BOOL, 0, 1, 1, NULL, 0, NULL },
     { "spo.mute.6", "Audio", "Mute voice 7", MUTE_DESC, RECOMP_RUNTIME_UI_BOOL, 0, 1, 1, NULL, 0, NULL },
     { "spo.mute.7", "Audio", "Mute voice 8", MUTE_DESC, RECOMP_RUNTIME_UI_BOOL, 0, 1, 1, NULL, 0, NULL },
-    BOOL_ROW("spo.hearts", "Infinite hearts", "Mac never runs out of hearts, so he can always throw punches."),
-    BOOL_ROW("spo.stars", "Infinite stars", "Keeps your stars, so you can throw a super punch whenever you like."),
-    BOOL_ROW("spo.hit", "Can't be hit", "Mac takes no damage and can't be knocked down."),
+    BOOL_ROW("spo.meter", "Full super meter", "Keeps the super meter full during a fight."),
+    BOOL_ROW("spo.hit", "Can't be hit", "Mac stays at full health, so no damage and no knockdowns. Time running out can still lose the fight."),
+    BOOL_ROW("spo.rest", "Infinite tries", "REST never goes down, so losing a fight never ends the game."),
     { "spo.start", "Cheats", "Start at fighter", "New games begin against this fighter.",
       RECOMP_RUNTIME_UI_CHOICE, 0, FIGHTERS, 1, kFighters, 1 + FIGHTERS, NULL },
     { "spo.skip", "Cheats", "Skip to the next fight", "Ends the fight you are in as a win.",
@@ -52,9 +52,9 @@ const RecompRuntimeUiItem kSpoMenuItems[SPO_MENU_ITEM_COUNT] = {
 static void save(void) {
     FILE *f = fopen("superpunchout.ini", "w");
     if (!f) return;
-    fprintf(f, "mute_mask=%u\nhearts=%d\nstars=%d\nhit=%d\nstart=%d\n",
-            (unsigned)g_dsp_voice_mute_mask, g_spo_cheats.infinite_hearts,
-            g_spo_cheats.infinite_stars, g_spo_cheats.cant_be_hit, s_fighter);
+    fprintf(f, "mute_mask=%u\nmeter=%d\nhit=%d\nrest=%d\nstart=%d\n",
+            (unsigned)g_dsp_voice_mute_mask, g_spo_cheats.infinite_stars,
+            g_spo_cheats.cant_be_hit, g_spo_cheats.infinite_rest, s_fighter);
     fclose(f);
 }
 
@@ -75,9 +75,9 @@ void SpoUiLoad(void) {
     while (fgets(line, sizeof(line), f)) {
         unsigned v;
         if (sscanf(line, "mute_mask=%u", &v) == 1) g_dsp_voice_mute_mask = (uint8_t)v;
-        else if (sscanf(line, "hearts=%u", &v) == 1) g_spo_cheats.infinite_hearts = v != 0;
-        else if (sscanf(line, "stars=%u", &v) == 1) g_spo_cheats.infinite_stars = v != 0;
+        else if (sscanf(line, "meter=%u", &v) == 1) g_spo_cheats.infinite_stars = v != 0;
         else if (sscanf(line, "hit=%u", &v) == 1) g_spo_cheats.cant_be_hit = v != 0;
+        else if (sscanf(line, "rest=%u", &v) == 1) g_spo_cheats.infinite_rest = v != 0;
         else if (sscanf(line, "start=%u", &v) == 1) s_fighter = v > FIGHTERS ? 0 : (uint8_t)v;
     }
     fclose(f);
@@ -94,9 +94,9 @@ static int get_value(void *ctx, const RecompRuntimeUiItem *it, int *out) {
     (void)ctx;
     int v = mute_voice(it);
     if (v >= 0) *out = (g_dsp_voice_mute_mask >> v) & 1;
-    else if (!strcmp(it->key, "spo.hearts")) *out = g_spo_cheats.infinite_hearts;
-    else if (!strcmp(it->key, "spo.stars")) *out = g_spo_cheats.infinite_stars;
+    else if (!strcmp(it->key, "spo.meter")) *out = g_spo_cheats.infinite_stars;
     else if (!strcmp(it->key, "spo.hit")) *out = g_spo_cheats.cant_be_hit;
+    else if (!strcmp(it->key, "spo.rest")) *out = g_spo_cheats.infinite_rest;
     else if (!strcmp(it->key, "spo.start")) *out = s_fighter;
     else return 0;
     return 1;
@@ -108,9 +108,9 @@ static int set_value(void *ctx, const RecompRuntimeUiItem *it, int value) {
     if (v >= 0) {
         if (value) g_dsp_voice_mute_mask |= (uint8_t)(1u << v);
         else g_dsp_voice_mute_mask &= (uint8_t)~(1u << v);
-    } else if (!strcmp(it->key, "spo.hearts")) g_spo_cheats.infinite_hearts = value != 0;
-    else if (!strcmp(it->key, "spo.stars")) g_spo_cheats.infinite_stars = value != 0;
+    } else if (!strcmp(it->key, "spo.meter")) g_spo_cheats.infinite_stars = value != 0;
     else if (!strcmp(it->key, "spo.hit")) g_spo_cheats.cant_be_hit = value != 0;
+    else if (!strcmp(it->key, "spo.rest")) g_spo_cheats.infinite_rest = value != 0;
     else if (!strcmp(it->key, "spo.start")) {
         s_fighter = value < 0 || value > FIGHTERS ? 0 : (uint8_t)value;
         apply_fighter();

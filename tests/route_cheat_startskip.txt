@@ -1,0 +1,56 @@
+# like skip, but from a chosen starting boxer
+#@ frames=3102
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 60
+dump s0
+wait 60
+dump s1
+wait 60
+dump s2
+wait 60
+dump s3
+wait 60
+dump s4
+wait 60
+dump s5
+wait 60
+dump s6
+wait 60
+dump s7
+wait 60
+dump s8
+wait 60
+dump s9
+wait 60
+dump s10
+wait 60
+dump s11
+wait 60
+dump s12
+wait 60
+dump s13
+wait 50

@@ -1,0 +1,141 @@
+# Cheat switches on (skip every fight, start at boxer 1 of the World circuit): plays all four boxers' cards and fights, then the circuit-clear screens.
+#@ frames=9000
+#@ netenv=SPO_CHEATS=skipall,start=world:1
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+until 0602 == 02 4000
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+until 0000 == 01 3000
+until 0602 == 01 4000
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+until 0000 == 01 3000
+until 0602 == 00 4000
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+until 0000 == 01 3000
+wait 1200
+dump champion
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+dump end0
+wait 400
+dump end1
+wait 400
+dump end2

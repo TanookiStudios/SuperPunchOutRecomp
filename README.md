@@ -68,7 +68,7 @@ Own mappings: put a `gamecontrollerdb.txt` in the settings folder
 - **Launcher.** Set everything before you play: display, sound, controls, cheats.
 - **In-game menu (Esc).** Change settings, save and load states, reset the game, or close it.
 - **Sound.** Volume, and a mute switch for each of the Super Nintendo's eight sound voices.
-- **Cheats.** Infinite hearts, infinite stars, can't be hit, start against any fighter, and skip to the next fight.
+- **Cheats.** A full super meter, can't be hit, infinite tries, start against any fighter, and skip to the next fight.
 
 ## Screenshots
 

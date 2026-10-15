@@ -1,0 +1,43 @@
+# Mac starts with only 3 health in the first fight: the next hit would empty his bar (knockdown) unless cant_be_hit is on. (Undoing the drop at the end of the frame is NOT enough: an earlier build did that and Mac still went down, because the game reacts to health 0 inside the same frame.)
+#@ frames=4482
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 420
+poke 089F 03
+poke 089E 00
+wait 300
+dump e0
+wait 300
+dump e1
+wait 300
+dump e2
+wait 300
+dump e3
+wait 300
+dump e4
+wait 300
+dump e5
+wait 50

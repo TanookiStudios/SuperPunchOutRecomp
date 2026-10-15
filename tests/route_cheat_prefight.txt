@@ -1,0 +1,29 @@
+# title -> first fight, then 1100 frames idle in play; used to find where each cheat first changes anything
+#@ frames=3732
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 420
+wait 1100

@@ -1,0 +1,95 @@
+# First fight with Mac's health held at 1 and no input: Gabby knocks him out, the results screen shows, Start brings the boxer's card and the fight again; repeated until the tries (REST) run out and the game over / menu path plays.
+#@ frames=22500
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 300
+forcepoke 089F 01
+forcepoke 088F 01
+wait 2300
+dump results
+press start 4
+wait 300
+dump l0a
+press start 4
+wait 300
+dump l0b
+press a 4
+wait 150
+press a 4
+wait 150
+wait 2400
+dump loss0
+press start 4
+wait 300
+dump l1a
+press start 4
+wait 300
+dump l1b
+press a 4
+wait 150
+press a 4
+wait 150
+wait 2400
+dump loss1
+press start 4
+wait 300
+dump l2a
+press start 4
+wait 300
+dump l2b
+press a 4
+wait 150
+press a 4
+wait 150
+wait 2400
+dump loss2
+press start 4
+wait 300
+dump l3a
+press start 4
+wait 300
+dump l3b
+press a 4
+wait 150
+press a 4
+wait 150
+wait 2400
+dump loss3
+press start 4
+wait 300
+dump l4a
+press start 4
+wait 300
+dump l4b
+press a 4
+wait 150
+press a 4
+wait 150
+wait 2400
+dump loss4
+press start 4
+wait 600
+dump end

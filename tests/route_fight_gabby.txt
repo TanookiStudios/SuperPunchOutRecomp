@@ -1,0 +1,435 @@
+# Title -> Name 'A' -> Championship -> Minor circuit -> first fight (Gabby Jay), then punch/dodge for the rest of 6000 frames (Mac gets hurt and knocked down, so both fighters go down).
+#@ frames=6000
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 300
+dump fight_start
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump play00
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump play01
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump play02
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump play03
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump play04
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump play05
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump play06
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump play07
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press left 8
+wait 20
+press right 8
+wait 20
+press down 8
+wait 0
+dump play08
+dump end

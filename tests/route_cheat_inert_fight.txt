@@ -1,0 +1,404 @@
+# title -> menu -> first fight (Gabby Jay), then 3000 frames of the punch pattern
+#@ frames=5828
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 420
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press b 3
+wait 13
+press a 3
+wait 13
+press b 3
+wait 13
+press y 3
+wait 13
+press a 3
+wait 13
+press x 3
+wait 13

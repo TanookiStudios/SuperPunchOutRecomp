@@ -1,0 +1,33 @@
+# new game up to the first boxer card, then into the fight: which boxer do we get?
+#@ frames=2862
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+dump card
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 300
+dump fight
+wait 300
+dump fight2
+wait 50

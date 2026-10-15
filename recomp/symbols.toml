@@ -19,3 +19,6397 @@ addr = "a299"
 bank = 0
 emit = false
 note = "Native NMI vector ($FFEA)"
+
+# >>> BEGIN coverage-promoted (written by tests/promote_from_coverage.py; do not hand-edit)
+[[func]]
+name = "fn_00_87A7"
+addr = "87a7"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_87B5"
+addr = "87b5"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_87FE"
+addr = "87fe"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_881D"
+addr = "881d"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_888E"
+addr = "888e"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_8DCD"
+addr = "8dcd"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_8DE7"
+addr = "8de7"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_8E05"
+addr = "8e05"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_8ECB"
+addr = "8ecb"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_8EE4"
+addr = "8ee4"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_8F9B"
+addr = "8f9b"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_8FD7"
+addr = "8fd7"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_9058"
+addr = "9058"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_90D7"
+addr = "90d7"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_9359"
+addr = "9359"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9386"
+addr = "9386"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_944F"
+addr = "944f"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_945C"
+addr = "945c"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_94CF"
+addr = "94cf"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_94F4"
+addr = "94f4"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_950C"
+addr = "950c"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9519"
+addr = "9519"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_9528"
+addr = "9528"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9595"
+addr = "9595"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_9762"
+addr = "9762"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_9899"
+addr = "9899"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_993C"
+addr = "993c"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9965"
+addr = "9965"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9969"
+addr = "9969"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_997E"
+addr = "997e"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_9B4F"
+addr = "9b4f"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9B66"
+addr = "9b66"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_9BD8"
+addr = "9bd8"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9BE7"
+addr = "9be7"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_9C28"
+addr = "9c28"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9CB6"
+addr = "9cb6"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_9CBA"
+addr = "9cba"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9CCA"
+addr = "9cca"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9D48"
+addr = "9d48"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9D4D"
+addr = "9d4d"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9D5F"
+addr = "9d5f"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9E89"
+addr = "9e89"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9E96"
+addr = "9e96"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9E9C"
+addr = "9e9c"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9EA2"
+addr = "9ea2"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9EC5"
+addr = "9ec5"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_9ED8"
+addr = "9ed8"
+bank = 0
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_9EDE"
+addr = "9ede"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_A06D"
+addr = "a06d"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_A0A4"
+addr = "a0a4"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_A11C"
+addr = "a11c"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_A2BA"
+addr = "a2ba"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A2BE"
+addr = "a2be"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A2C4"
+addr = "a2c4"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A3BA"
+addr = "a3ba"
+bank = 0
+emit = true
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_A3ED"
+addr = "a3ed"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_A478"
+addr = "a478"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A493"
+addr = "a493"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_A507"
+addr = "a507"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_A50A"
+addr = "a50a"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_A523"
+addr = "a523"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A52F"
+addr = "a52f"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A549"
+addr = "a549"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A559"
+addr = "a559"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A569"
+addr = "a569"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A5A0"
+addr = "a5a0"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_A5A6"
+addr = "a5a6"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_AA07"
+addr = "aa07"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_AADB"
+addr = "aadb"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_ABEB"
+addr = "abeb"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_AD1B"
+addr = "ad1b"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_AE0B"
+addr = "ae0b"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_AFA8"
+addr = "afa8"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_B03F"
+addr = "b03f"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_B07D"
+addr = "b07d"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_B118"
+addr = "b118"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_B231"
+addr = "b231"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_B287"
+addr = "b287"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_B2A3"
+addr = "b2a3"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_B2B2"
+addr = "b2b2"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B4AA"
+addr = "b4aa"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_B4BC"
+addr = "b4bc"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B616"
+addr = "b616"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_B643"
+addr = "b643"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_B673"
+addr = "b673"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_B67B"
+addr = "b67b"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B69D"
+addr = "b69d"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B6A4"
+addr = "b6a4"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B6AD"
+addr = "b6ad"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B6B1"
+addr = "b6b1"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B6C4"
+addr = "b6c4"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B6CD"
+addr = "b6cd"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B6D4"
+addr = "b6d4"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B6D8"
+addr = "b6d8"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_B71E"
+addr = "b71e"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B730"
+addr = "b730"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_B73B"
+addr = "b73b"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B751"
+addr = "b751"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B778"
+addr = "b778"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B789"
+addr = "b789"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B7C7"
+addr = "b7c7"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B7D5"
+addr = "b7d5"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B7E5"
+addr = "b7e5"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_B823"
+addr = "b823"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B837"
+addr = "b837"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B849"
+addr = "b849"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B869"
+addr = "b869"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B88A"
+addr = "b88a"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B896"
+addr = "b896"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B8AD"
+addr = "b8ad"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B8CC"
+addr = "b8cc"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B8DF"
+addr = "b8df"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B8ED"
+addr = "b8ed"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B932"
+addr = "b932"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B939"
+addr = "b939"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B945"
+addr = "b945"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_B951"
+addr = "b951"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_B95F"
+addr = "b95f"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_BA0E"
+addr = "ba0e"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BA15"
+addr = "ba15"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BA1A"
+addr = "ba1a"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BA1F"
+addr = "ba1f"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BA24"
+addr = "ba24"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BA29"
+addr = "ba29"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BA78"
+addr = "ba78"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_BA7C"
+addr = "ba7c"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BA80"
+addr = "ba80"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BA8A"
+addr = "ba8a"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BAA4"
+addr = "baa4"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_BB4E"
+addr = "bb4e"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_BBE6"
+addr = "bbe6"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_BD2F"
+addr = "bd2f"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_BD40"
+addr = "bd40"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BEDC"
+addr = "bedc"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BEE8"
+addr = "bee8"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_BFBC"
+addr = "bfbc"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_BFDC"
+addr = "bfdc"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_C045"
+addr = "c045"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C053"
+addr = "c053"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_C0A4"
+addr = "c0a4"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C14B"
+addr = "c14b"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C26D"
+addr = "c26d"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_C679"
+addr = "c679"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C6F9"
+addr = "c6f9"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C720"
+addr = "c720"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C74A"
+addr = "c74a"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C76D"
+addr = "c76d"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C77B"
+addr = "c77b"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C79E"
+addr = "c79e"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C7A8"
+addr = "c7a8"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C7B5"
+addr = "c7b5"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C7EC"
+addr = "c7ec"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C80D"
+addr = "c80d"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C828"
+addr = "c828"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C868"
+addr = "c868"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C8AD"
+addr = "c8ad"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_C95C"
+addr = "c95c"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CA82"
+addr = "ca82"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CA91"
+addr = "ca91"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CB50"
+addr = "cb50"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CBA1"
+addr = "cba1"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CBB7"
+addr = "cbb7"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CC21"
+addr = "cc21"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CC3A"
+addr = "cc3a"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CC3C"
+addr = "cc3c"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CC45"
+addr = "cc45"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CC96"
+addr = "cc96"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CCB7"
+addr = "ccb7"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CCD5"
+addr = "ccd5"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CCFE"
+addr = "ccfe"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CD42"
+addr = "cd42"
+bank = 0
+emit = true
+note = "call target"
+
+[[func]]
+name = "fn_00_CD65"
+addr = "cd65"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CDCF"
+addr = "cdcf"
+bank = 0
+emit = true
+entry_m = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_CF51"
+addr = "cf51"
+bank = 0
+emit = true
+note = "call target"
+
+[[func]]
+name = "fn_00_D050"
+addr = "d050"
+bank = 0
+emit = true
+note = "call target"
+
+[[func]]
+name = "fn_00_D0D3"
+addr = "d0d3"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D0D6"
+addr = "d0d6"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D0DE"
+addr = "d0de"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D0E6"
+addr = "d0e6"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D0EC"
+addr = "d0ec"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D108"
+addr = "d108"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D11C"
+addr = "d11c"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D127"
+addr = "d127"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D12E"
+addr = "d12e"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D143"
+addr = "d143"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D14A"
+addr = "d14a"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D152"
+addr = "d152"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D15B"
+addr = "d15b"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D164"
+addr = "d164"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D171"
+addr = "d171"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D17A"
+addr = "d17a"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D191"
+addr = "d191"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D1B7"
+addr = "d1b7"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D1D8"
+addr = "d1d8"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D1E1"
+addr = "d1e1"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D1EA"
+addr = "d1ea"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D278"
+addr = "d278"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D3AE"
+addr = "d3ae"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D423"
+addr = "d423"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D4D2"
+addr = "d4d2"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D543"
+addr = "d543"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D54D"
+addr = "d54d"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D564"
+addr = "d564"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D570"
+addr = "d570"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D5B9"
+addr = "d5b9"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D648"
+addr = "d648"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D680"
+addr = "d680"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D68F"
+addr = "d68f"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D6B4"
+addr = "d6b4"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D6DB"
+addr = "d6db"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D7A6"
+addr = "d7a6"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D7F6"
+addr = "d7f6"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_D927"
+addr = "d927"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_DA15"
+addr = "da15"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_DA4E"
+addr = "da4e"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_DA55"
+addr = "da55"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_DA68"
+addr = "da68"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_DA9A"
+addr = "da9a"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_DABE"
+addr = "dabe"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_DC9A"
+addr = "dc9a"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_DCB3"
+addr = "dcb3"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_DD98"
+addr = "dd98"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_DE27"
+addr = "de27"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_DEBB"
+addr = "debb"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_DEF5"
+addr = "def5"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_DF28"
+addr = "df28"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_DFA3"
+addr = "dfa3"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_E097"
+addr = "e097"
+bank = 0
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_E0A3"
+addr = "e0a3"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_E0F4"
+addr = "e0f4"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E106"
+addr = "e106"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E117"
+addr = "e117"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E14E"
+addr = "e14e"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E169"
+addr = "e169"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E186"
+addr = "e186"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E1E5"
+addr = "e1e5"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E1F7"
+addr = "e1f7"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E208"
+addr = "e208"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E23F"
+addr = "e23f"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E25C"
+addr = "e25c"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_E271"
+addr = "e271"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_E33D"
+addr = "e33d"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_E399"
+addr = "e399"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_E456"
+addr = "e456"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_E986"
+addr = "e986"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_E9B4"
+addr = "e9b4"
+bank = 0
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_E9D6"
+addr = "e9d6"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_EAE4"
+addr = "eae4"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_EBB4"
+addr = "ebb4"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_EC4B"
+addr = "ec4b"
+bank = 0
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_EC6E"
+addr = "ec6e"
+bank = 0
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_EE4D"
+addr = "ee4d"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_EEDA"
+addr = "eeda"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_F054"
+addr = "f054"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_F0F2"
+addr = "f0f2"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_F1AA"
+addr = "f1aa"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_F254"
+addr = "f254"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_F356"
+addr = "f356"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_F378"
+addr = "f378"
+bank = 0
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_00_F440"
+addr = "f440"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_F47D"
+addr = "f47d"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F4AB"
+addr = "f4ab"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F4C5"
+addr = "f4c5"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F4E7"
+addr = "f4e7"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F509"
+addr = "f509"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F51A"
+addr = "f51a"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F534"
+addr = "f534"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F547"
+addr = "f547"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F561"
+addr = "f561"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F57B"
+addr = "f57b"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_F590"
+addr = "f590"
+bank = 0
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_00_FFA0"
+addr = "ffa0"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_00_FFA3"
+addr = "ffa3"
+bank = 0
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8000"
+addr = "8000"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8006"
+addr = "8006"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_800C"
+addr = "800c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_800F"
+addr = "800f"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8015"
+addr = "8015"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_802A"
+addr = "802a"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_802D"
+addr = "802d"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8030"
+addr = "8030"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8033"
+addr = "8033"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8036"
+addr = "8036"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8039"
+addr = "8039"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_803C"
+addr = "803c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_803F"
+addr = "803f"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_8069"
+addr = "8069"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_8086"
+addr = "8086"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_80E7"
+addr = "80e7"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8146"
+addr = "8146"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8149"
+addr = "8149"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8165"
+addr = "8165"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_817D"
+addr = "817d"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8359"
+addr = "8359"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_83A4"
+addr = "83a4"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_83D0"
+addr = "83d0"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8400"
+addr = "8400"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_8473"
+addr = "8473"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8489"
+addr = "8489"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_84C4"
+addr = "84c4"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_84CD"
+addr = "84cd"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_84D5"
+addr = "84d5"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_84E6"
+addr = "84e6"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_850E"
+addr = "850e"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8536"
+addr = "8536"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8547"
+addr = "8547"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_854E"
+addr = "854e"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_856D"
+addr = "856d"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8576"
+addr = "8576"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_857F"
+addr = "857f"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8588"
+addr = "8588"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_85B1"
+addr = "85b1"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_85DB"
+addr = "85db"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_85F2"
+addr = "85f2"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_85FB"
+addr = "85fb"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8615"
+addr = "8615"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_861B"
+addr = "861b"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8626"
+addr = "8626"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8642"
+addr = "8642"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8685"
+addr = "8685"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_87AF"
+addr = "87af"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_87B2"
+addr = "87b2"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_87BF"
+addr = "87bf"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_87F0"
+addr = "87f0"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_884C"
+addr = "884c"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_886F"
+addr = "886f"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_887C"
+addr = "887c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_88EE"
+addr = "88ee"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8904"
+addr = "8904"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_890C"
+addr = "890c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_891A"
+addr = "891a"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8925"
+addr = "8925"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8991"
+addr = "8991"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8B04"
+addr = "8b04"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8B16"
+addr = "8b16"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8B1D"
+addr = "8b1d"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8B26"
+addr = "8b26"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8B4A"
+addr = "8b4a"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8B68"
+addr = "8b68"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8B93"
+addr = "8b93"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8BA2"
+addr = "8ba2"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8BBF"
+addr = "8bbf"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8BE3"
+addr = "8be3"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8C09"
+addr = "8c09"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8C2C"
+addr = "8c2c"
+bank = 1
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8C52"
+addr = "8c52"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8C71"
+addr = "8c71"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8C89"
+addr = "8c89"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8CB0"
+addr = "8cb0"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8CE3"
+addr = "8ce3"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8D0C"
+addr = "8d0c"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8D1C"
+addr = "8d1c"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8D6D"
+addr = "8d6d"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8D7B"
+addr = "8d7b"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8D89"
+addr = "8d89"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_8D96"
+addr = "8d96"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8DFF"
+addr = "8dff"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8E2A"
+addr = "8e2a"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8E58"
+addr = "8e58"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8E90"
+addr = "8e90"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8EA9"
+addr = "8ea9"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8ED2"
+addr = "8ed2"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8EDD"
+addr = "8edd"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8F07"
+addr = "8f07"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8F0C"
+addr = "8f0c"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8F13"
+addr = "8f13"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8F3B"
+addr = "8f3b"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8F58"
+addr = "8f58"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_8F68"
+addr = "8f68"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9085"
+addr = "9085"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9105"
+addr = "9105"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_910D"
+addr = "910d"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_91A5"
+addr = "91a5"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9234"
+addr = "9234"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_924D"
+addr = "924d"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9336"
+addr = "9336"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_933C"
+addr = "933c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_937F"
+addr = "937f"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9389"
+addr = "9389"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9391"
+addr = "9391"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9572"
+addr = "9572"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_95D2"
+addr = "95d2"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_96EA"
+addr = "96ea"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_96FD"
+addr = "96fd"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_97FD"
+addr = "97fd"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_9812"
+addr = "9812"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_986B"
+addr = "986b"
+bank = 1
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_9B9D"
+addr = "9b9d"
+bank = 1
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_9D5F"
+addr = "9d5f"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_9D92"
+addr = "9d92"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9DA6"
+addr = "9da6"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9DEF"
+addr = "9def"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_9DF8"
+addr = "9df8"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9E00"
+addr = "9e00"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9E36"
+addr = "9e36"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9EA6"
+addr = "9ea6"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9F17"
+addr = "9f17"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9F22"
+addr = "9f22"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9F33"
+addr = "9f33"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9F48"
+addr = "9f48"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9F72"
+addr = "9f72"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9F85"
+addr = "9f85"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9F9A"
+addr = "9f9a"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9FAF"
+addr = "9faf"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9FC2"
+addr = "9fc2"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_9FFD"
+addr = "9ffd"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A001"
+addr = "a001"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A08A"
+addr = "a08a"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A09C"
+addr = "a09c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A0B0"
+addr = "a0b0"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A0E7"
+addr = "a0e7"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A27E"
+addr = "a27e"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A2EC"
+addr = "a2ec"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A4B8"
+addr = "a4b8"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A4E0"
+addr = "a4e0"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A4EF"
+addr = "a4ef"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A509"
+addr = "a509"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A529"
+addr = "a529"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A54F"
+addr = "a54f"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A554"
+addr = "a554"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A56F"
+addr = "a56f"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A589"
+addr = "a589"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A5F7"
+addr = "a5f7"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A632"
+addr = "a632"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_A635"
+addr = "a635"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A644"
+addr = "a644"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_A6F6"
+addr = "a6f6"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A75A"
+addr = "a75a"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A7A6"
+addr = "a7a6"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A81D"
+addr = "a81d"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A859"
+addr = "a859"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_A993"
+addr = "a993"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AA49"
+addr = "aa49"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_AA55"
+addr = "aa55"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AA82"
+addr = "aa82"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AA91"
+addr = "aa91"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AAA0"
+addr = "aaa0"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AAB5"
+addr = "aab5"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_AAB6"
+addr = "aab6"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AAC2"
+addr = "aac2"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AAD9"
+addr = "aad9"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AB1E"
+addr = "ab1e"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AB7C"
+addr = "ab7c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AB94"
+addr = "ab94"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_ABAD"
+addr = "abad"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_ACB7"
+addr = "acb7"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_ACD5"
+addr = "acd5"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_ACFB"
+addr = "acfb"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AD08"
+addr = "ad08"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_AD3A"
+addr = "ad3a"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AD69"
+addr = "ad69"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AD85"
+addr = "ad85"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AD8A"
+addr = "ad8a"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AD99"
+addr = "ad99"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_ADAB"
+addr = "adab"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_ADAE"
+addr = "adae"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AE2A"
+addr = "ae2a"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AE5B"
+addr = "ae5b"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AF23"
+addr = "af23"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_AF64"
+addr = "af64"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_AFB9"
+addr = "afb9"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_B0F0"
+addr = "b0f0"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_B12D"
+addr = "b12d"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_B138"
+addr = "b138"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_B14D"
+addr = "b14d"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_B1AD"
+addr = "b1ad"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_B20E"
+addr = "b20e"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_B24A"
+addr = "b24a"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_B24C"
+addr = "b24c"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_B25B"
+addr = "b25b"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_B389"
+addr = "b389"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_B3F0"
+addr = "b3f0"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_B8A3"
+addr = "b8a3"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_B8B4"
+addr = "b8b4"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_B915"
+addr = "b915"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_B927"
+addr = "b927"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_B9A2"
+addr = "b9a2"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_BA06"
+addr = "ba06"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_BB48"
+addr = "bb48"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_BB61"
+addr = "bb61"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_BB6E"
+addr = "bb6e"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_BB7D"
+addr = "bb7d"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_BBAD"
+addr = "bbad"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_BC2B"
+addr = "bc2b"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_C6E7"
+addr = "c6e7"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_C6EA"
+addr = "c6ea"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_C703"
+addr = "c703"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_C739"
+addr = "c739"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_C758"
+addr = "c758"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_C7AA"
+addr = "c7aa"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_C8E9"
+addr = "c8e9"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_C905"
+addr = "c905"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_C946"
+addr = "c946"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_C9BB"
+addr = "c9bb"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_CA71"
+addr = "ca71"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CA8B"
+addr = "ca8b"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CA9D"
+addr = "ca9d"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CAAE"
+addr = "caae"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CB25"
+addr = "cb25"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CB3F"
+addr = "cb3f"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CB57"
+addr = "cb57"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CB59"
+addr = "cb59"
+bank = 1
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_CBA8"
+addr = "cba8"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CBCA"
+addr = "cbca"
+bank = 1
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_CC01"
+addr = "cc01"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CC79"
+addr = "cc79"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CCB5"
+addr = "ccb5"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CD09"
+addr = "cd09"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CD20"
+addr = "cd20"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CDAA"
+addr = "cdaa"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CE0B"
+addr = "ce0b"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CF6E"
+addr = "cf6e"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CFB6"
+addr = "cfb6"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_CFB8"
+addr = "cfb8"
+bank = 1
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_CFED"
+addr = "cfed"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D00F"
+addr = "d00f"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D03E"
+addr = "d03e"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D066"
+addr = "d066"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D082"
+addr = "d082"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D0BC"
+addr = "d0bc"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D0EF"
+addr = "d0ef"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D14C"
+addr = "d14c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D1FC"
+addr = "d1fc"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D314"
+addr = "d314"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D354"
+addr = "d354"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D36D"
+addr = "d36d"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D384"
+addr = "d384"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D39B"
+addr = "d39b"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D3DD"
+addr = "d3dd"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D513"
+addr = "d513"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D54A"
+addr = "d54a"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D641"
+addr = "d641"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D6FA"
+addr = "d6fa"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D70C"
+addr = "d70c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D774"
+addr = "d774"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D77D"
+addr = "d77d"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_D79C"
+addr = "d79c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D7A7"
+addr = "d7a7"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D7B7"
+addr = "d7b7"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D8F7"
+addr = "d8f7"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D972"
+addr = "d972"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D9AD"
+addr = "d9ad"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_D9D2"
+addr = "d9d2"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_DA0F"
+addr = "da0f"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_DA16"
+addr = "da16"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_DA26"
+addr = "da26"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_DA31"
+addr = "da31"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_DA39"
+addr = "da39"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_DA44"
+addr = "da44"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_DA68"
+addr = "da68"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_DC19"
+addr = "dc19"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_DC42"
+addr = "dc42"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_DC4B"
+addr = "dc4b"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_DCC0"
+addr = "dcc0"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_DDD8"
+addr = "ddd8"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_DDE4"
+addr = "dde4"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_DFB4"
+addr = "dfb4"
+bank = 1
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_01_E5AE"
+addr = "e5ae"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_E5C5"
+addr = "e5c5"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_EC00"
+addr = "ec00"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_EC60"
+addr = "ec60"
+bank = 1
+emit = true
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_ECBF"
+addr = "ecbf"
+bank = 1
+emit = true
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_ECE2"
+addr = "ece2"
+bank = 1
+emit = true
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_F083"
+addr = "f083"
+bank = 1
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_F153"
+addr = "f153"
+bank = 1
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_F16B"
+addr = "f16b"
+bank = 1
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_F800"
+addr = "f800"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_F803"
+addr = "f803"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_F9A1"
+addr = "f9a1"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_F9E2"
+addr = "f9e2"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_FA14"
+addr = "fa14"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_FA3A"
+addr = "fa3a"
+bank = 1
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_01_FB90"
+addr = "fb90"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_FBC2"
+addr = "fbc2"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_FBD9"
+addr = "fbd9"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_FBF5"
+addr = "fbf5"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_FC93"
+addr = "fc93"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_FD2C"
+addr = "fd2c"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_01_FDFA"
+addr = "fdfa"
+bank = 1
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_8020"
+addr = "8020"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_8023"
+addr = "8023"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_8026"
+addr = "8026"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_8029"
+addr = "8029"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_802F"
+addr = "802f"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_8032"
+addr = "8032"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_8035"
+addr = "8035"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_8038"
+addr = "8038"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_803B"
+addr = "803b"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_ABD7"
+addr = "abd7"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_ABD8"
+addr = "abd8"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_ABDF"
+addr = "abdf"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_BD9B"
+addr = "bd9b"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_BDBF"
+addr = "bdbf"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_BDCA"
+addr = "bdca"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_BE78"
+addr = "be78"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_BEE6"
+addr = "bee6"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_BEE9"
+addr = "bee9"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_BEF9"
+addr = "bef9"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_BF47"
+addr = "bf47"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_BFBC"
+addr = "bfbc"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C05A"
+addr = "c05a"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_C1E0"
+addr = "c1e0"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_C1E3"
+addr = "c1e3"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C1EB"
+addr = "c1eb"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C200"
+addr = "c200"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C206"
+addr = "c206"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C214"
+addr = "c214"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C21C"
+addr = "c21c"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C226"
+addr = "c226"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C22E"
+addr = "c22e"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C23D"
+addr = "c23d"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C285"
+addr = "c285"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C2A1"
+addr = "c2a1"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_C35F"
+addr = "c35f"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C3E9"
+addr = "c3e9"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_C433"
+addr = "c433"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C49C"
+addr = "c49c"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C4B7"
+addr = "c4b7"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_C4D7"
+addr = "c4d7"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C4E4"
+addr = "c4e4"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C4FB"
+addr = "c4fb"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C501"
+addr = "c501"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C50D"
+addr = "c50d"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C51A"
+addr = "c51a"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C533"
+addr = "c533"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_C553"
+addr = "c553"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C554"
+addr = "c554"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C55B"
+addr = "c55b"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C593"
+addr = "c593"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C5D0"
+addr = "c5d0"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C5DC"
+addr = "c5dc"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C5E8"
+addr = "c5e8"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C5F3"
+addr = "c5f3"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C605"
+addr = "c605"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C608"
+addr = "c608"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C660"
+addr = "c660"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C679"
+addr = "c679"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C685"
+addr = "c685"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C691"
+addr = "c691"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C694"
+addr = "c694"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C6C1"
+addr = "c6c1"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C6C6"
+addr = "c6c6"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C6EB"
+addr = "c6eb"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C728"
+addr = "c728"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C747"
+addr = "c747"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C79E"
+addr = "c79e"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C7AB"
+addr = "c7ab"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C7BE"
+addr = "c7be"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C7CB"
+addr = "c7cb"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C7DD"
+addr = "c7dd"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C7F4"
+addr = "c7f4"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C7FF"
+addr = "c7ff"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C83F"
+addr = "c83f"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C85C"
+addr = "c85c"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C86E"
+addr = "c86e"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C8C3"
+addr = "c8c3"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_C940"
+addr = "c940"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_C96C"
+addr = "c96c"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C979"
+addr = "c979"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C9B6"
+addr = "c9b6"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_C9D7"
+addr = "c9d7"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CA3C"
+addr = "ca3c"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CA4B"
+addr = "ca4b"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CA5A"
+addr = "ca5a"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CA69"
+addr = "ca69"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CA78"
+addr = "ca78"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CA89"
+addr = "ca89"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CA9A"
+addr = "ca9a"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CB06"
+addr = "cb06"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_CB2A"
+addr = "cb2a"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_CB3E"
+addr = "cb3e"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_CB77"
+addr = "cb77"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_CBA3"
+addr = "cba3"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_CBC8"
+addr = "cbc8"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CBE4"
+addr = "cbe4"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CBF0"
+addr = "cbf0"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CC25"
+addr = "cc25"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_CC31"
+addr = "cc31"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_CC54"
+addr = "cc54"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_CCBA"
+addr = "ccba"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_D044"
+addr = "d044"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_D061"
+addr = "d061"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D093"
+addr = "d093"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_D0E9"
+addr = "d0e9"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_D105"
+addr = "d105"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_D162"
+addr = "d162"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_D17C"
+addr = "d17c"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_D20C"
+addr = "d20c"
+bank = 8
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_D309"
+addr = "d309"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_D312"
+addr = "d312"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_D355"
+addr = "d355"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_D397"
+addr = "d397"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_D3A9"
+addr = "d3a9"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_D3FD"
+addr = "d3fd"
+bank = 8
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_08_D405"
+addr = "d405"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D481"
+addr = "d481"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D4AF"
+addr = "d4af"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D4DF"
+addr = "d4df"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D4E9"
+addr = "d4e9"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D51E"
+addr = "d51e"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D54A"
+addr = "d54a"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D575"
+addr = "d575"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D5A6"
+addr = "d5a6"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D65C"
+addr = "d65c"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D6B0"
+addr = "d6b0"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D6C9"
+addr = "d6c9"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D6D2"
+addr = "d6d2"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_D70F"
+addr = "d70f"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D736"
+addr = "d736"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D75C"
+addr = "d75c"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D786"
+addr = "d786"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D7B4"
+addr = "d7b4"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D7C0"
+addr = "d7c0"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D7EF"
+addr = "d7ef"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D80A"
+addr = "d80a"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D840"
+addr = "d840"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D862"
+addr = "d862"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_08_D86B"
+addr = "d86b"
+bank = 8
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_08_D88D"
+addr = "d88d"
+bank = 8
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_801A"
+addr = "801a"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_802D"
+addr = "802d"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_8040"
+addr = "8040"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_8043"
+addr = "8043"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_8046"
+addr = "8046"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_8058"
+addr = "8058"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_805B"
+addr = "805b"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_805E"
+addr = "805e"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_A158"
+addr = "a158"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_A17E"
+addr = "a17e"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_A1A3"
+addr = "a1a3"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_A208"
+addr = "a208"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_A212"
+addr = "a212"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_A223"
+addr = "a223"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_A227"
+addr = "a227"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_A22B"
+addr = "a22b"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_A22F"
+addr = "a22f"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_A240"
+addr = "a240"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_A25D"
+addr = "a25d"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_A29B"
+addr = "a29b"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_A2B5"
+addr = "a2b5"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_E262"
+addr = "e262"
+bank = 13
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_E267"
+addr = "e267"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_E998"
+addr = "e998"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_E9B5"
+addr = "e9b5"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_E9F4"
+addr = "e9f4"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_EA45"
+addr = "ea45"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_EA72"
+addr = "ea72"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_ECAF"
+addr = "ecaf"
+bank = 13
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_ECB4"
+addr = "ecb4"
+bank = 13
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_ECCE"
+addr = "ecce"
+bank = 13
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_ECE1"
+addr = "ece1"
+bank = 13
+emit = true
+entry_m = 0
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_EDB1"
+addr = "edb1"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_EDCF"
+addr = "edcf"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_EDD6"
+addr = "edd6"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_EE51"
+addr = "ee51"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_EE58"
+addr = "ee58"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_EE66"
+addr = "ee66"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_EE70"
+addr = "ee70"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_EE7D"
+addr = "ee7d"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_EED4"
+addr = "eed4"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_EF1B"
+addr = "ef1b"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_EF1C"
+addr = "ef1c"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_EF27"
+addr = "ef27"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_F058"
+addr = "f058"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_F08C"
+addr = "f08c"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F0A1"
+addr = "f0a1"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F0A7"
+addr = "f0a7"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F0EB"
+addr = "f0eb"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_F10A"
+addr = "f10a"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F127"
+addr = "f127"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F12A"
+addr = "f12a"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F132"
+addr = "f132"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F150"
+addr = "f150"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F157"
+addr = "f157"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F160"
+addr = "f160"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F16D"
+addr = "f16d"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F17B"
+addr = "f17b"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F189"
+addr = "f189"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F1EB"
+addr = "f1eb"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F1F7"
+addr = "f1f7"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F203"
+addr = "f203"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F211"
+addr = "f211"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F2B7"
+addr = "f2b7"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_F362"
+addr = "f362"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_F376"
+addr = "f376"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F3B1"
+addr = "f3b1"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F3C8"
+addr = "f3c8"
+bank = 13
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_F3F1"
+addr = "f3f1"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F3FC"
+addr = "f3fc"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F413"
+addr = "f413"
+bank = 13
+emit = true
+entry_m = 0
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_F42C"
+addr = "f42c"
+bank = 13
+emit = true
+entry_x = 0
+note = "jump landing"
+
+[[func]]
+name = "fn_0D_F4B5"
+addr = "f4b5"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_F580"
+addr = "f580"
+bank = 13
+emit = true
+entry_x = 0
+note = "call target"
+
+[[func]]
+name = "fn_0D_F8F7"
+addr = "f8f7"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+[[func]]
+name = "fn_0D_F9C3"
+addr = "f9c3"
+bank = 13
+emit = true
+entry_x = 0
+note = "interpreted region start"
+
+# <<< END coverage-promoted

@@ -1,0 +1,77 @@
+# idle in the first fight and read how the fight ends (skip cheat)
+#@ frames=4122
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 420
+wait 60
+dump s0
+wait 60
+dump s1
+wait 60
+dump s2
+wait 60
+dump s3
+wait 60
+dump s4
+wait 60
+dump s5
+wait 60
+dump s6
+wait 60
+dump s7
+wait 60
+dump s8
+wait 60
+dump s9
+wait 60
+dump s10
+wait 60
+dump s11
+wait 60
+dump s12
+wait 60
+dump s13
+wait 60
+dump s14
+wait 60
+dump s15
+wait 60
+dump s16
+wait 60
+dump s17
+wait 60
+dump s18
+wait 60
+dump s19
+wait 60
+dump s20
+wait 60
+dump s21
+wait 60
+dump s22
+wait 60
+dump s23
+wait 50

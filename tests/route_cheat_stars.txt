@@ -1,0 +1,39 @@
+# idle in the first fight; read the super meter
+#@ frames=5682
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 420
+wait 600
+dump d0
+wait 600
+dump d1
+wait 600
+dump d2
+wait 600
+dump d3
+wait 600
+dump d4
+wait 50

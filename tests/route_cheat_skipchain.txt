@@ -1,0 +1,143 @@
+# skip every fight of the Minor circuit (Gabby Jay, Bear Hugger, Piston Hurricane, Bald Bull); the game then shows MINOR CIRCUIT CLEAR and goes on to the Major circuit
+#@ frames=30000
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+until 0602 == 02 4000
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+until 0000 == 01 3000
+until 0602 == 01 4000
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+until 0000 == 01 3000
+until 0602 == 00 4000
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+until 0000 == 01 3000
+wait 1200
+dump c_champ
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+press a 4
+wait 60
+dump c_end0
+wait 400
+dump c_end1
+wait 400
+dump c_end2
+wait 400
+dump c_end3
+quit

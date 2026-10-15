@@ -1,0 +1,70 @@
+# lose the first fight by 3 knockdowns, read REST on the results screen, then continue
+#@ frames=7552
+wait 1200
+press start 4
+wait 200
+press start 4
+wait 100
+press a 4
+wait 30
+press start 4
+wait 30
+press start 4
+wait 60
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+press a 4
+wait 76
+wait 420
+poke 089F 00
+poke 089E 00
+wait 800
+poke 089F 00
+poke 089E 00
+wait 800
+poke 089F 00
+poke 089E 00
+wait 800
+wait 150
+dump r0
+wait 150
+dump r1
+wait 150
+dump r2
+wait 150
+dump r3
+wait 150
+dump r4
+wait 150
+dump r5
+wait 150
+dump r6
+wait 150
+dump r7
+press start 4
+wait 60
+press start 4
+wait 60
+wait 200
+dump r_card
+press a 4
+wait 80
+press a 4
+wait 80
+press a 4
+wait 80
+press a 4
+wait 80
+wait 600
+dump r_fight
+wait 50

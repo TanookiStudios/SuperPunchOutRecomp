@@ -1,0 +1,3 @@
+# title attract demo, nothing pressed, 3000 frames
+#@ frames=3000
+wait 3000
