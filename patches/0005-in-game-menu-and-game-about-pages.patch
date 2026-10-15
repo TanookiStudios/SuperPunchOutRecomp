@@ -1,0 +1,833 @@
+diff --git a/host/snes_runtime_menu_gl.cpp b/host/snes_runtime_menu_gl.cpp
+new file mode 100644
+index 0000000..8570789
+--- /dev/null
++++ b/host/snes_runtime_menu_gl.cpp
+@@ -0,0 +1,189 @@
++/* See snes_runtime_menu_gl.h. SDL3 only: the SDL2 fallback build has no menu. */
++#include "snes_runtime_menu_gl.h"
++
++#include "recomp_runtime_ui.h"
++
++#include <cstdio>
++#include <cstdlib>
++#include <cstring>
++#include <vector>
++
++#if defined(SNESRECOMP_SDL3) && SNESRECOMP_SDL3
++
++#include <SDL3/SDL.h>
++
++#include "gl_core_3_1.h"
++#include "imgui.h"
++#include "backends/imgui_impl_opengl3.h"
++
++namespace {
++SDL_Window *s_win;
++SDL_GLContext s_gl;
++ImGuiContext *s_ctx;
++GLuint s_fbo, s_tex;
++int s_w, s_h;
++std::vector<unsigned char> s_rgba;
++std::vector<uint32_t> s_argb;
++
++/* Makes the private context current and restores whatever was current. */
++struct Scope {
++    SDL_Window *win = SDL_GL_GetCurrentWindow();
++    SDL_GLContext ctx = SDL_GL_GetCurrentContext();
++    Scope() { SDL_GL_MakeCurrent(s_win, s_gl); }
++    ~Scope() {
++        if (win && ctx) SDL_GL_MakeCurrent(win, ctx);
++        else SDL_GL_MakeCurrent(nullptr, nullptr);
++    }
++};
++
++bool resize_target(int w, int h) {
++    if (w == s_w && h == s_h && s_fbo) return true;
++    if (!s_fbo) glGenFramebuffers(1, &s_fbo);
++    if (!s_tex) glGenTextures(1, &s_tex);
++    glBindTexture(GL_TEXTURE_2D, s_tex);
++    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
++    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
++    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
++    glBindFramebuffer(GL_FRAMEBUFFER, s_fbo);
++    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, s_tex, 0);
++    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
++        std::fprintf(stderr, "runtime menu: offscreen framebuffer incomplete\n");
++        return false;
++    }
++    s_w = w;
++    s_h = h;
++    s_rgba.assign((size_t)w * h * 4, 0);
++    s_argb.assign((size_t)w * h, 0);
++    return true;
++}
++} // namespace
++
++extern "C" int snes_rtmenu_gl_init(void) {
++    if (s_win) return 1;
++    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
++    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
++    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
++    SDL_Window *prev_win = SDL_GL_GetCurrentWindow();
++    SDL_GLContext prev_ctx = SDL_GL_GetCurrentContext();
++    s_win = SDL_CreateWindow("menu", 64, 64, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
++    if (!s_win) {
++        std::fprintf(stderr, "runtime menu: no hidden window: %s\n", SDL_GetError());
++        return 0;
++    }
++    s_gl = SDL_GL_CreateContext(s_win);
++    if (!s_gl) {
++        std::fprintf(stderr, "runtime menu: no OpenGL context: %s\n", SDL_GetError());
++        SDL_DestroyWindow(s_win);
++        s_win = nullptr;
++        return 0;
++    }
++    SDL_GL_MakeCurrent(s_win, s_gl);
++    ogl_LoadFunctions();
++    IMGUI_CHECKVERSION();
++    ImGuiContext *old = ImGui::GetCurrentContext();
++    s_ctx = ImGui::CreateContext();
++    ImGui::SetCurrentContext(s_ctx);
++    ImGuiIO &io = ImGui::GetIO();
++    io.IniFilename = nullptr;
++    io.LogFilename = nullptr;
++    ImGui::StyleColorsDark();
++    bool ok = ImGui_ImplOpenGL3_Init("#version 150");
++    if (!ok) std::fprintf(stderr, "runtime menu: ImGui OpenGL init failed\n");
++    ImGui::SetCurrentContext(old);
++    if (prev_win && prev_ctx) SDL_GL_MakeCurrent(prev_win, prev_ctx);
++    else SDL_GL_MakeCurrent(nullptr, nullptr);
++    if (!ok) {
++        snes_rtmenu_gl_shutdown();
++        return 0;
++    }
++    return 1;
++}
++
++extern "C" void snes_rtmenu_gl_shutdown(void) {
++    if (!s_win) return;
++    SDL_GL_MakeCurrent(s_win, s_gl);
++    if (s_ctx) {
++        ImGui::SetCurrentContext(s_ctx);
++        ImGui_ImplOpenGL3_Shutdown();
++        ImGui::DestroyContext(s_ctx);
++        s_ctx = nullptr;
++    }
++    if (s_tex) glDeleteTextures(1, &s_tex);
++    if (s_fbo) glDeleteFramebuffers(1, &s_fbo);
++    s_tex = s_fbo = 0;
++    s_w = s_h = 0;
++    SDL_GL_MakeCurrent(nullptr, nullptr);
++    SDL_GL_DestroyContext(s_gl);
++    SDL_DestroyWindow(s_win);
++    s_gl = nullptr;
++    s_win = nullptr;
++}
++
++extern "C" const uint32_t *snes_rtmenu_gl_render(struct RecompRuntimeUi *ui, int w, int h) {
++    if (!s_win || !ui || w < 16 || h < 16) return nullptr;
++    Scope scope;
++    ImGuiContext *old = ImGui::GetCurrentContext();
++    ImGui::SetCurrentContext(s_ctx);
++    struct Restore { ImGuiContext *c; ~Restore() { ImGui::SetCurrentContext(c); } } restore{old};
++    if (!resize_target(w, h)) return nullptr;
++
++    ImGuiIO &io = ImGui::GetIO();
++    io.DisplaySize = ImVec2((float)w, (float)h);
++    io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
++    io.DeltaTime = 1.0f / 60.0f;
++    ImGui_ImplOpenGL3_NewFrame();
++    ImGui::NewFrame();
++    recomp_runtime_ui_render_imgui(ui);
++    ImGui::Render();
++
++    glBindFramebuffer(GL_FRAMEBUFFER, s_fbo);
++    glViewport(0, 0, w, h);
++    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
++    glClear(GL_COLOR_BUFFER_BIT);
++    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
++    glPixelStorei(GL_PACK_ALIGNMENT, 1);
++    glReadPixels(0, 0, w, h, GL_RGBA, GL_UNSIGNED_BYTE, s_rgba.data());
++    glBindFramebuffer(GL_FRAMEBUFFER, 0);
++
++    /* Bottom-up premultiplied RGBA -> top-down straight-alpha ARGB. */
++    for (int y = 0; y < h; ++y) {
++        const unsigned char *src = &s_rgba[(size_t)(h - 1 - y) * w * 4];
++        uint32_t *dst = &s_argb[(size_t)y * w];
++        for (int x = 0; x < w; ++x, src += 4) {
++            unsigned a = src[3], r = src[0], g = src[1], b = src[2];
++            if (a && a < 255) {
++                r = r * 255 / a; if (r > 255) r = 255;
++                g = g * 255 / a; if (g > 255) g = 255;
++                b = b * 255 / a; if (b > 255) b = 255;
++            }
++            dst[x] = (a << 24) | (r << 16) | (g << 8) | b;
++        }
++    }
++    return s_argb.data();
++}
++
++extern "C" void snes_rtmenu_gl_mouse_pos(float x, float y) {
++    if (!s_ctx) return;
++    ImGuiContext *old = ImGui::GetCurrentContext();
++    ImGui::SetCurrentContext(s_ctx);
++    ImGui::GetIO().AddMousePosEvent(x, y);
++    ImGui::SetCurrentContext(old);
++}
++
++extern "C" void snes_rtmenu_gl_mouse_button(int button, int down) {
++    if (!s_ctx) return;
++    ImGuiContext *old = ImGui::GetCurrentContext();
++    ImGui::SetCurrentContext(s_ctx);
++    ImGui::GetIO().AddMouseButtonEvent(button, down != 0);
++    ImGui::SetCurrentContext(old);
++}
++
++#else /* SDL2 fallback: no in-game menu */
++
++extern "C" int snes_rtmenu_gl_init(void) { return 0; }
++extern "C" void snes_rtmenu_gl_shutdown(void) {}
++extern "C" const uint32_t *snes_rtmenu_gl_render(struct RecompRuntimeUi *, int, int) { return nullptr; }
++extern "C" void snes_rtmenu_gl_mouse_pos(float, float) {}
++extern "C" void snes_rtmenu_gl_mouse_button(int, int) {}
++
++#endif
+diff --git a/host/snes_runtime_menu_gl.h b/host/snes_runtime_menu_gl.h
+new file mode 100644
+index 0000000..16dd700
+--- /dev/null
++++ b/host/snes_runtime_menu_gl.h
+@@ -0,0 +1,37 @@
++/*
++ * snes_runtime_menu_gl.h - draws recomp-ui's in-game menu (recomp_runtime_ui.h)
++ * into a plain pixel buffer, for the desktop host to lay over the game picture.
++ *
++ * Dear ImGui renders on a private, hidden OpenGL context into an offscreen
++ * framebuffer, so the host's own presenter (SDL renderer, OpenGL or software)
++ * never has to know about ImGui: it just blends the returned image.
++ */
++#ifndef SNES_RUNTIME_MENU_GL_H
++#define SNES_RUNTIME_MENU_GL_H
++
++#include <stdint.h>
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++struct RecompRuntimeUi;
++
++/* Creates the hidden context and ImGui. Returns 1 on success. */
++int snes_rtmenu_gl_init(void);
++void snes_rtmenu_gl_shutdown(void);
++
++/* Renders the menu at w x h into ARGB8888 with straight (not premultiplied)
++ * alpha, top row first. The pointer stays valid until the next call. NULL on
++ * failure. */
++const uint32_t *snes_rtmenu_gl_render(struct RecompRuntimeUi *ui, int w, int h);
++
++/* Mouse position in the overlay's pixels, and button presses (0 = left). */
++void snes_rtmenu_gl_mouse_pos(float x, float y);
++void snes_rtmenu_gl_mouse_button(int button, int down);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif
+diff --git a/runner/src/desktop/host_main.c b/runner/src/desktop/host_main.c
+index 4672f0c..c046001 100644
+--- a/runner/src/desktop/host_main.c
++++ b/runner/src/desktop/host_main.c
+@@ -85,6 +85,10 @@
+ #include "recomp_launcher.h"   /* recomp_launcher_run_window() */
+ #include "launcher_video.h"
+ #include "launcher_profile.h"  /* launcher_profile_apply("snes", &gi) */
++#if defined(SNESRECOMP_RUNTIME_MENU)
++#include "recomp_runtime_ui.h"
++#include "snes_runtime_menu_gl.h"
++#endif
+ /* The shared presentation blend is recomp-ui's (src/recomp_frame_blend.h,
+  * master since 2026-09). A project pinned to an older recomp-ui builds
+  * without it and simply gets no Frame blending row. */
+@@ -2040,6 +2044,371 @@ static void RunRewindLoop(bool *running) {
+   GameReset();
+ }
+ 
++static SDL_Texture *g_texture;   /* defined with the SDL presenter below */
++/* ── In-game menu (Esc) ───────────────────────────────────────────────────────
++ * recomp-ui's runtime menu: the same Display / Graphics / Audio / System /
++ * Controls / Cheats panel every Tanooki port shows. recomp-ui draws and
++ * navigates; this block says what the rows are and what they do. The guest is
++ * FROZEN while it is open (same modal shape as the save-state browser), and
++ * the picture it lays over the frozen game is drawn by Dear ImGui on a private
++ * hidden OpenGL context (snes_runtime_menu_gl.cpp), then blended by whichever
++ * presenter is active. Built when the game defines SNESRECOMP_RUNTIME_MENU. */
++#if defined(RECOMP_LAUNCHER) && defined(SNESRECOMP_RUNTIME_MENU) && SNESRECOMP_SDL3
++#define SNES_RUNTIME_MENU 1
++static RecompRuntimeUi *g_rtui;
++static RecompRuntimeUiItem g_rt_items[64];
++static size_t g_rt_item_count;
++static int g_rt_state_slot = 1;
++static uint64_t g_rt_quit_armed;
++static int g_runtime_menu_hotkey;
++static PadGesture g_menu_gesture_guide, g_menu_gesture_pad;
++/* What the presenters blend over the picture while the menu is up. */
++const uint32_t *g_rt_overlay_pixels;
++int g_rt_overlay_w, g_rt_overlay_h;
++
++static void RtAdd(const char *key, const char *section, const char *label,
++                  const char *desc, RecompRuntimeUiItemType type) {
++  if (g_rt_item_count >= sizeof(g_rt_items) / sizeof(g_rt_items[0])) return;
++  RecompRuntimeUiItem *it = &g_rt_items[g_rt_item_count++];
++  memset(it, 0, sizeof(*it));
++  it->key = key; it->section = section; it->label = label;
++  it->description = desc; it->type = type;
++}
++
++static int RtIsKey(const RecompRuntimeUiItem *it, const char *key) {
++  return it->key && !strcmp(it->key, key);
++}
++static int RtIsGameRow(const RecompRuntimeUiItem *it) {
++  for (size_t i = 0; i < g_game->menu_item_count; ++i)
++    if (&g_game->menu_items[i] == it || (it->key && g_game->menu_items[i].key &&
++                                          !strcmp(it->key, g_game->menu_items[i].key)))
++      return 1;
++  return 0;
++}
++
++static void RtSetFullscreen(int v) {
++  g_config.fullscreen = (uint8)(v < 0 ? 0 : v > 2 ? 2 : v);
++  if (g_config.fullscreen) g_win_flags |= SNESRECOMP_SDL_WINDOW_FULLSCREEN_DESKTOP;
++  else g_win_flags &= ~SNESRECOMP_SDL_WINDOW_FULLSCREEN_DESKTOP;
++  SDL_SetWindowFullscreen(g_window, (g_win_flags & SNESRECOMP_SDL_WINDOW_FULLSCREEN_DESKTOP) != 0);
++  g_fullscreen_changed = true;
++}
++
++static int RtGetValue(void *ctx, const RecompRuntimeUiItem *it, int *out) {
++  (void)ctx;
++  if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_FULLSCREEN)) *out = g_config.fullscreen;
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_WINDOW_SCALE)) *out = g_current_window_scale;
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_INTEGER_SCALE)) *out = g_config.integer_scale;
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_LINEAR_FILTER)) *out = g_config.linear_filtering;
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_AUDIO)) *out = g_config.enable_audio;
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_VOLUME)) *out = g_config.volume;
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_STATE_SLOT)) *out = g_rt_state_slot;
++  else if (RtIsGameRow(it) && g_game->menu_callbacks && g_game->menu_callbacks->get_value)
++    return g_game->menu_callbacks->get_value(g_game->menu_callbacks->context, it, out);
++  else return 0;
++  return 1;
++}
++
++static int RtSetValue(void *ctx, const RecompRuntimeUiItem *it, int v) {
++  (void)ctx;
++  if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_FULLSCREEN)) RtSetFullscreen(v);
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_WINDOW_SCALE)) {
++    ChangeWindowScale(v - (int)g_current_window_scale);
++    g_config.window_scale = g_current_window_scale;
++  } else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_INTEGER_SCALE)) g_config.integer_scale = v != 0;
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_LINEAR_FILTER)) {
++    g_config.linear_filtering = v != 0;
++    if (g_texture) snesrecomp_sdl_set_texture_linear(g_texture, g_config.linear_filtering);
++  } else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_AUDIO)) { g_config.enable_audio = v != 0; ApplyVolume(); }
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_VOLUME)) { g_config.volume = v < 0 ? 0 : v > 100 ? 100 : v; ApplyVolume(); }
++  else if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_STATE_SLOT)) g_rt_state_slot = v < 1 ? 1 : v > 10 ? 10 : v;
++  else if (RtIsGameRow(it) && g_game->menu_callbacks && g_game->menu_callbacks->set_value)
++    return g_game->menu_callbacks->set_value(g_game->menu_callbacks->context, it, v);
++  else return 0;
++  return 1;
++}
++
++static int RtRunAction(void *ctx, const RecompRuntimeUiItem *it) {
++  (void)ctx;
++  if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_RESUME)) { recomp_runtime_ui_close(g_rtui); return 1; }
++  if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_SAVE_STATE)) {
++    RtlSaveLoad(kSaveLoad_Save, g_rt_state_slot - 1);
++    recomp_runtime_ui_set_status(g_rtui, "State saved");
++    return 0;   /* keep the status text instead of "Done" */
++  }
++  if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_LOAD_STATE)) {
++    RtlSaveLoad(kSaveLoad_Load, g_rt_state_slot - 1);
++    recomp_runtime_ui_close(g_rtui);
++    return 1;
++  }
++  if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_RESET)) {
++    ConsoleReset();
++    recomp_runtime_ui_close(g_rtui);
++    return 1;
++  }
++  if (RtIsKey(it, "snes.quit")) {
++    uint64_t now = SDL_GetTicks();
++    if (g_rt_quit_armed && now - g_rt_quit_armed < 3000) {
++      SDL_Event quit; memset(&quit, 0, sizeof(quit)); quit.type = SDL_QUIT;
++      SDL_PushEvent(&quit);
++      return 1;
++    }
++    g_rt_quit_armed = now;
++    recomp_runtime_ui_set_status(g_rtui, "Press again to quit");
++    return 0;
++  }
++  if (RtIsGameRow(it) && g_game->menu_callbacks && g_game->menu_callbacks->run_action)
++    return g_game->menu_callbacks->run_action(g_game->menu_callbacks->context, it);
++  return 0;
++}
++
++static int RtIsEnabled(void *ctx, const RecompRuntimeUiItem *it) {
++  (void)ctx;
++  if (it->key && !strncmp(it->key, "snes.hint.", 10)) return 0;   /* information rows */
++  if (RtIsKey(it, RECOMP_RUNTIME_UI_KEY_WINDOW_SCALE)) return g_config.fullscreen == 0;
++  if (RtIsGameRow(it) && g_game->menu_callbacks && g_game->menu_callbacks->is_enabled)
++    return g_game->menu_callbacks->is_enabled(g_game->menu_callbacks->context, it);
++  return 1;
++}
++
++static void RtSave(void *ctx) { (void)ctx; WriteConfigFile(g_active_config_file); }
++static void RtVisibility(void *ctx, int open) { (void)ctx; g_rt_quit_armed = 0; (void)open; }
++
++/* Created on first use, so a player who never opens the menu pays nothing. */
++static bool RtEnsureMenu(void) {
++  if (g_rtui) return true;
++  if (!snes_rtmenu_gl_init()) return false;
++  g_rt_item_count = 0;
++  RtAdd("snes.hint.menu", "Controls", "Open this menu",
++        "Esc on the keyboard. On a controller: the Guide / Home button, or Select + left stick click.",
++        RECOMP_RUNTIME_UI_ACTION);
++  RtAdd("snes.hint.state", "Controls", "Quick save and load",
++        "Shift + F1 to F10 saves, F1 to F10 loads (ten slots).", RECOMP_RUNTIME_UI_ACTION);
++  RtAdd("snes.hint.reset", "Controls", "Reset", "Ctrl + R.", RECOMP_RUNTIME_UI_ACTION);
++  RtAdd("snes.hint.fullscreen", "Controls", "Fullscreen", "Alt + Enter.", RECOMP_RUNTIME_UI_ACTION);
++  RtAdd("snes.hint.turbo", "Controls", "Fast forward", "Hold Tab.", RECOMP_RUNTIME_UI_ACTION);
++  RtAdd("snes.hint.rewind", "Controls", "Rewind", "F12 (controller: Select + right stick click).",
++        RECOMP_RUNTIME_UI_ACTION);
++  RtAdd("snes.hint.pause", "Controls", "Pause", "Shift + P.", RECOMP_RUNTIME_UI_ACTION);
++  for (size_t i = 0; i < g_game->menu_item_count && g_rt_item_count < 63; ++i)
++    g_rt_items[g_rt_item_count++] = g_game->menu_items[i];
++  RtAdd("snes.quit", "System", "Close game", "Closes the game window. Press twice to confirm.",
++        RECOMP_RUNTIME_UI_ACTION);
++
++  RecompRuntimeUiStandardConfig std;
++  memset(&std, 0, sizeof(std));
++  std.menu.title = g_game->display_name;
++  std.menu.subtitle = "SUPER NINTENDO";
++  std.menu.theme = "snes";
++  std.menu.accept_label = "Enter / A";
++  std.menu.back_label = "Backspace / B";
++  std.menu.callbacks.get_value = RtGetValue;
++  std.menu.callbacks.set_value = RtSetValue;
++  std.menu.callbacks.run_action = RtRunAction;
++  std.menu.callbacks.is_enabled = RtIsEnabled;
++  std.menu.callbacks.save = RtSave;
++  std.menu.callbacks.visibility_changed = RtVisibility;
++  std.features = RECOMP_RUNTIME_UI_STANDARD_FULLSCREEN | RECOMP_RUNTIME_UI_STANDARD_WINDOW_SCALE |
++                 RECOMP_RUNTIME_UI_STANDARD_INTEGER_SCALE | RECOMP_RUNTIME_UI_STANDARD_LINEAR_FILTER |
++                 RECOMP_RUNTIME_UI_STANDARD_AUDIO | RECOMP_RUNTIME_UI_STANDARD_VOLUME |
++                 RECOMP_RUNTIME_UI_STANDARD_RESUME | RECOMP_RUNTIME_UI_STANDARD_SAVE_STATE |
++                 RECOMP_RUNTIME_UI_STANDARD_LOAD_STATE | RECOMP_RUNTIME_UI_STANDARD_RESET |
++                 RECOMP_RUNTIME_UI_STANDARD_STATE_SLOT;
++  std.window_scale_max = kMaxWindowScale;
++  std.state_slot_count = 10;
++  std.extra_items = g_rt_items;
++  std.extra_item_count = g_rt_item_count;
++  g_rtui = recomp_runtime_ui_create_standard(&std);
++  if (!g_rtui) {
++    fprintf(stderr, "[menu] the in-game menu could not be created\n");
++    snes_rtmenu_gl_shutdown();
++    return false;
++  }
++  PadGestureConfigure(&g_menu_gesture_pad, NULL, "Select+L3", "menu", "MenuGesture");
++  memset(&g_menu_gesture_guide, 0, sizeof(g_menu_gesture_guide));
++  g_menu_gesture_guide.raw = 1u << kGamepadBtn_Guide;
++  g_menu_gesture_guide.ok = true;
++  return true;
++}
++
++static void RtShutdownMenu(void) {
++  if (g_rtui) recomp_runtime_ui_destroy(g_rtui);
++  g_rtui = NULL;
++  snes_rtmenu_gl_shutdown();
++}
++
++/* Nearest-neighbour backdrop for the self-test dump: the menu over the frozen
++ * game, as the player sees it. */
++static void RtDump(const char *path, const uint32_t *ov, int ow, int oh) {
++  FILE *f = fopen(path, "wb");
++  if (!f) return;
++  fprintf(f, "P6\n%d %d\n255\n", ow, oh);
++  for (int y = 0; y < oh; ++y)
++    for (int x = 0; x < ow; ++x) {
++      uint32_t bg = 0;
++      if (g_frozen_w > 0 && g_frozen_h > 0)
++        bg = ((const uint32_t *)g_frozen_frame)[(size_t)(y * g_frozen_h / oh) * g_frozen_w + x * g_frozen_w / ow];
++      uint32_t p = ov[(size_t)y * ow + x];
++      unsigned a = p >> 24;
++      unsigned r = (((p >> 16) & 255) * a + ((bg >> 16) & 255) * (255 - a)) / 255;
++      unsigned g = (((p >> 8) & 255) * a + ((bg >> 8) & 255) * (255 - a)) / 255;
++      unsigned b = ((p & 255) * a + (bg & 255) * (255 - a)) / 255;
++      fputc((int)r, f); fputc((int)g, f); fputc((int)b, f);
++    }
++  fclose(f);
++}
++
++/* The frozen game with the menu over it. */
++static void PresentFrozenWithRuntimeMenu(const char *dump_path) {
++  int ow = 0, oh = 0;
++  if (g_renderer_funcs.GetOutputSize) g_renderer_funcs.GetOutputSize(&ow, &oh);
++  if (ow <= 0 || oh <= 0) SDL_GetWindowSize(g_window, &ow, &oh);
++  const uint32_t *overlay = snes_rtmenu_gl_render(g_rtui, ow, oh);
++  if (overlay && dump_path) RtDump(dump_path, overlay, ow, oh);
++  g_rt_overlay_pixels = overlay;
++  g_rt_overlay_w = ow;
++  g_rt_overlay_h = oh;
++  const int draw_w = (g_frozen_w > 0 ? g_frozen_w : g_snes_width) * 2;
++  const int draw_h = (g_frozen_h > 0 ? g_frozen_h : g_snes_height) * 2;
++  uint8 *pixel_buffer = 0;
++  int pitch = 0;
++  g_renderer_funcs.BeginDraw(draw_w, draw_h, &pixel_buffer, &pitch);
++  if (pixel_buffer) {
++    if (g_frozen_w > 0 && g_frozen_h > 0)
++      snes_ovl_upscale_frame(pixel_buffer, pitch, draw_w, draw_h,
++                             (const uint32_t *)g_frozen_frame, g_frozen_w * 4,
++                             g_frozen_w, g_frozen_h);
++    else
++      memset(pixel_buffer, 0, (size_t)draw_h * (size_t)pitch);
++  }
++  g_renderer_funcs.EndDraw();
++  g_rt_overlay_pixels = NULL;
++}
++
++static int RtKeyToInput(int key) {
++  switch (key) {
++  case SDLK_UP: return RECOMP_RUNTIME_UI_INPUT_UP;
++  case SDLK_DOWN: return RECOMP_RUNTIME_UI_INPUT_DOWN;
++  case SDLK_LEFT: return RECOMP_RUNTIME_UI_INPUT_LEFT;
++  case SDLK_RIGHT: return RECOMP_RUNTIME_UI_INPUT_RIGHT;
++  case SDLK_RETURN: case SDLK_KP_ENTER: case SDLK_SPACE: return RECOMP_RUNTIME_UI_INPUT_ACCEPT;
++  case SDLK_BACKSPACE: return RECOMP_RUNTIME_UI_INPUT_BACK;
++  default: return -1;
++  }
++}
++
++static void RtPumpEvents(bool *running) {
++  SDL_Event event;
++  int ww = 0, wh = 0;
++  SDL_GetWindowSize(g_window, &ww, &wh);
++  while (SDL_PollEvent(&event)) {
++    if (HandleDeviceEvent(&event)) continue;
++    switch (event.type) {
++    case SDL_QUIT:
++      *running = false;
++      break;
++    case SDL_KEYDOWN: {
++      const int key = SNESRECOMP_SDL_EVENT_KEY(event);
++      if (key == SDLK_ESCAPE) { recomp_runtime_ui_close(g_rtui); break; }
++      const int in = RtKeyToInput(key);
++      if (in >= 0)
++        recomp_runtime_ui_handle_input(g_rtui, (RecompRuntimeUiInput)in, 1,
++                                       SNESRECOMP_SDL_EVENT_REPEAT(event) ? 1 : 0);
++      break;
++    }
++    case SDL_KEYUP:
++      /* A key held across the close must not stay down in the guest. */
++      HandleInput(SNESRECOMP_SDL_EVENT_KEY(event), SNESRECOMP_SDL_EVENT_MOD(event), false);
++      break;
++    case SDL_MOUSEMOTION:
++      if (ww > 0 && wh > 0 && g_rt_overlay_w > 0)
++        snes_rtmenu_gl_mouse_pos((float)event.motion.x * g_rt_overlay_w / ww,
++                                 (float)event.motion.y * g_rt_overlay_h / wh);
++      break;
++    case SDL_MOUSEBUTTONDOWN:
++    case SDL_MOUSEBUTTONUP:
++      if (event.button.button == SDL_BUTTON_LEFT)
++        snes_rtmenu_gl_mouse_button(0, event.type == SDL_MOUSEBUTTONDOWN);
++      break;
++    default:
++      break;
++    }
++  }
++}
++
++/* Menu navigation from the pad: d-pad / left stick, A to accept, B to go back,
++ * with hold-to-repeat. */
++static void RtPadNav(uint32 *prev, uint32 *held_since, uint32 *last_repeat) {
++  static const struct { uint32 bit; int in; } kMap[] = {
++    { SNES_PAD_UP, RECOMP_RUNTIME_UI_INPUT_UP },     { SNES_PAD_DOWN, RECOMP_RUNTIME_UI_INPUT_DOWN },
++    { SNES_PAD_LEFT, RECOMP_RUNTIME_UI_INPUT_LEFT }, { SNES_PAD_RIGHT, RECOMP_RUNTIME_UI_INPUT_RIGHT },
++    { SNES_PAD_A, RECOMP_RUNTIME_UI_INPUT_ACCEPT },  { SNES_PAD_B, RECOMP_RUNTIME_UI_INPUT_BACK },
++  };
++  const uint32 now = SDL_GetTicks();
++  const uint32 pad = OverlayNavInputs();
++  for (size_t i = 0; i < sizeof(kMap) / sizeof(kMap[0]); ++i) {
++    const uint32 bit = kMap[i].bit;
++    const bool down = (pad & bit) != 0, was = (*prev & bit) != 0;
++    const bool movement = i < 4;
++    if (down && !was) {
++      recomp_runtime_ui_handle_input(g_rtui, (RecompRuntimeUiInput)kMap[i].in, 1, 0);
++      if (movement) { *held_since = now; *last_repeat = now; }
++    } else if (down && movement && now - *held_since >= SNES_OVL_REPEAT_DELAY &&
++               now - *last_repeat >= SNES_OVL_REPEAT_RATE) {
++      recomp_runtime_ui_handle_input(g_rtui, (RecompRuntimeUiInput)kMap[i].in, 1, 1);
++      *last_repeat = now;
++    }
++  }
++  *prev = pad;
++}
++
++static void RunRuntimeMenuLoop(bool *running) {
++  if (!RtEnsureMenu()) return;
++  host_report_breadcrumb("in-game menu OPEN - guest frozen until it closes (Esc, or Resume)");
++  const char *dump = HostGetenv("RUNTIME_MENU_DUMP");
++  /* Test hook: semantic inputs, one every 4 pumps, e.g. "down,down,accept". */
++  const char *script = HostGetenv("RUNTIME_MENU_SCRIPT");
++  g_overlay_modal = true;
++  SetAudioPaused(true);
++  snesrecomp_sdl_show_cursor(true);
++  recomp_runtime_ui_set_backdrop(g_rtui, RECOMP_RUNTIME_UI_DEFAULT_DIM, 1.0f);
++  recomp_runtime_ui_open(g_rtui);
++  uint32 prev = OverlayNavInputs(), held_since = 0, last_repeat = 0;
++  unsigned frames = 0;
++  while (recomp_runtime_ui_is_open(g_rtui) && *running) {
++    RtPumpEvents(running);
++    RtPadNav(&prev, &held_since, &last_repeat);
++    if (script && frames % 4 == 0 && frames / 4 < 64) {
++      const char *p = script;
++      for (unsigned n = frames / 4; n > 0 && p; --n) { p = strchr(p, ','); if (p) ++p; }
++      if (p && *p) {
++        int in = -1;
++        if (!strncmp(p, "down", 4)) in = RECOMP_RUNTIME_UI_INPUT_DOWN;
++        else if (!strncmp(p, "up", 2)) in = RECOMP_RUNTIME_UI_INPUT_UP;
++        else if (!strncmp(p, "left", 4)) in = RECOMP_RUNTIME_UI_INPUT_LEFT;
++        else if (!strncmp(p, "right", 5)) in = RECOMP_RUNTIME_UI_INPUT_RIGHT;
++        else if (!strncmp(p, "accept", 6)) in = RECOMP_RUNTIME_UI_INPUT_ACCEPT;
++        else if (!strncmp(p, "back", 4)) in = RECOMP_RUNTIME_UI_INPUT_BACK;
++        if (in >= 0) recomp_runtime_ui_handle_input(g_rtui, (RecompRuntimeUiInput)in, 1, 0);
++      }
++    }
++    PresentFrozenWithRuntimeMenu(frames == 40 ? dump : NULL);
++    if (HostGetenv("RUNTIME_MENU_SELFTEST") && frames >= (script ? 120u : 45u))
++      recomp_runtime_ui_close(g_rtui);
++    SDL_Delay(8);
++    frames++;
++  }
++  recomp_runtime_ui_close(g_rtui);
++  snesrecomp_sdl_show_cursor(g_cursor);
++  g_overlay_modal = false;
++  ResetAudioTimeline();
++  SetAudioPaused(g_paused);
++  OverlayNoteClosed();
++  host_report_breadcrumb("in-game menu CLOSED after %u pumps - guest resuming", frames);
++  GameReset();
++}
++#endif /* SNES_RUNTIME_MENU */
++
+ /* ── Audio ────────────────────────────────────────────────────────────────── */
+ 
+ static SDL_mutex *g_audio_mutex;
+@@ -2295,6 +2664,44 @@ static void SdlRenderer_EndDraw(void) {
+   /* SDL3's SDL_RenderTexture takes SDL_FRect, not SDL_Rect. */
+   snesrecomp_sdl_render_texture(g_renderer, g_texture, &g_sdl_renderer_rect,
+                                 &g_sdl_present_rect);
++#if defined(SNES_RUNTIME_MENU)
++  if (g_rt_overlay_pixels && g_rt_overlay_w > 0 && g_rt_overlay_h > 0) {
++    static SDL_Texture *overlay_tex;
++    static int overlay_w, overlay_h;
++    if (!overlay_tex || overlay_w != g_rt_overlay_w || overlay_h != g_rt_overlay_h) {
++      if (overlay_tex) SDL_DestroyTexture(overlay_tex);
++      overlay_tex = SDL_CreateTexture(g_renderer, SDL_PIXELFORMAT_ARGB8888,
++                                      SDL_TEXTUREACCESS_STREAMING,
++                                      g_rt_overlay_w, g_rt_overlay_h);
++      overlay_w = g_rt_overlay_w;
++      overlay_h = g_rt_overlay_h;
++      if (overlay_tex) SDL_SetTextureBlendMode(overlay_tex, SDL_BLENDMODE_BLEND);
++    }
++    if (overlay_tex) {
++      SDL_UpdateTexture(overlay_tex, NULL, g_rt_overlay_pixels, g_rt_overlay_w * 4);
++      snesrecomp_sdl_render_texture(g_renderer, overlay_tex, NULL, NULL);
++    }
++    /* Test hook: the window as the player sees it, menu included. */
++    const char *present_dump = HostGetenv("RUNTIME_MENU_PRESENT_DUMP");
++    static int present_dumped;
++    if (present_dump && !present_dumped) {
++      SDL_Surface *shot = SDL_RenderReadPixels(g_renderer, NULL);
++      if (shot) {
++        SDL_Surface *rgb = SDL_ConvertSurface(shot, SDL_PIXELFORMAT_RGB24);
++        FILE *f = rgb ? fopen(present_dump, "wb") : NULL;
++        if (f) {
++          fprintf(f, "P6\n%d %d\n255\n", rgb->w, rgb->h);
++          for (int y = 0; y < rgb->h; ++y)
++            fwrite((const uint8_t *)rgb->pixels + (size_t)y * rgb->pitch, 3, (size_t)rgb->w, f);
++          fclose(f);
++          present_dumped = 1;
++        }
++        if (rgb) SDL_DestroySurface(rgb);
++        SDL_DestroySurface(shot);
++      }
++    }
++  }
++#endif
+   SDL_RenderPresent(g_renderer);
+ }
+ 
+@@ -2775,6 +3182,14 @@ static void LauncherSeed(RecompLauncherCSettings *ls, RecompLauncherCGameInfo *g
+   if (!in_session)
+     snesrecomp_codegen_host_autowire(gi, gi->name);
+ #endif
++  /* The launcher's Game page (the title's own option rows) and About page. */
++  gi->game_items = game->menu_items;
++  gi->game_item_count = game->menu_item_count;
++  gi->game_callbacks = game->menu_callbacks;
++  gi->about_text = game->about_text;
++  gi->about_image = game->about_image;
++  gi->about_link_url = game->about_link_url;
++  gi->about_link_label = game->about_link_label;
+   if (game->configure_launcher) game->configure_launcher(gi);
+ }
+ 
+@@ -3865,6 +4280,12 @@ error_reading:;
+           g_netplay_exit_requested = 1;
+           break;
+         }
++#endif
++#if defined(SNES_RUNTIME_MENU)
++        if (SNESRECOMP_SDL_EVENT_KEY(event) == SDLK_ESCAPE && !SNESRECOMP_SDL_EVENT_REPEAT(event)) {
++          g_runtime_menu_hotkey = 1;
++          break;
++        }
+ #endif
+         HandleInput(SNESRECOMP_SDL_EVENT_KEY(event),
+                     SNESRECOMP_SDL_EVENT_MOD(event), true);
+@@ -4177,6 +4598,33 @@ error_reading:;
+         g_open_launcher_hotkey = 1;
+       }
+     }
++#if defined(SNES_RUNTIME_MENU)
++    {
++      /* Both gestures are polled every frame so each keeps its own edge. */
++      const bool pad_open = PadGesturePressed(&g_menu_gesture_guide) |
++                            PadGesturePressed(&g_menu_gesture_pad);
++      const bool menu_ok = !snes_rewind_is_open() && !snes_savestate_menu_is_open();
++      if ((g_runtime_menu_hotkey || pad_open) && menu_ok) {
++        g_runtime_menu_hotkey = 0;
++        RunRuntimeMenuLoop(&running);
++        if (!running) break;
++        continue;   /* guest was frozen: no frame to run or present */
++      }
++      g_runtime_menu_hotkey = 0;
++      /* Test hook: open the menu at a chosen frame (see RunRuntimeMenuLoop). */
++      static long menu_selftest = -2;
++      if (menu_selftest == -2) {
++        const char *v = HostGetenv("RUNTIME_MENU_SELFTEST");
++        menu_selftest = v ? strtol(v, NULL, 0) : -1;
++      }
++      if (menu_selftest >= 0 && (long)frameCtr == menu_selftest && menu_ok) {
++        menu_selftest = -1;
++        RunRuntimeMenuLoop(&running);
++        if (!running) break;
++        continue;
++      }
++    }
++#endif
+     if (game->in_game_launcher &&
+         (g_open_launcher_hotkey || PadGesturePressed(&g_launcher_gesture)) &&
+         !snes_rewind_is_open() && !snes_savestate_menu_is_open()) {
+@@ -4381,6 +4829,9 @@ error_reading:;
+   if (g_blend) recomp_frame_blend_destroy(g_blend);
+ #endif
+ 
++#if defined(SNES_RUNTIME_MENU)
++  RtShutdownMenu();
++#endif
+   if (game->on_shutdown) game->on_shutdown();
+ 
+   // clean sdl
+diff --git a/runner/src/desktop/host_main.h b/runner/src/desktop/host_main.h
+index 03b6f06..f031896 100644
+--- a/runner/src/desktop/host_main.h
++++ b/runner/src/desktop/host_main.h
+@@ -50,6 +50,8 @@ struct RtlGameInfo;
+ struct SpcPlayer;
+ struct RecompLauncherCModProvider;
+ struct RecompLauncherCGameInfo;
++struct RecompRuntimeUiItem;
++struct RecompRuntimeUiCallbacks;
+ 
+ /* Per-frame numbers a game's after_run_frame hook may want. Wall-clock
+  * figures are diagnostics only; nothing here samples or changes guest state. */
+@@ -187,6 +189,20 @@ typedef struct SnesDesktopHostGame {
+    * exactly where they left off. Zero keeps today's behaviour exactly. */
+   int in_game_launcher;
+ 
++  /* The title's own option rows: the launcher's Game page (ACTION rows are
++   * skipped there, nothing is running yet) and the in-game menu's sections.
++   * Types come from recomp-ui's recomp_runtime_ui.h. NULL / 0: none. */
++  const struct RecompRuntimeUiItem *menu_items;
++  size_t menu_item_count;
++  const struct RecompRuntimeUiCallbacks *menu_callbacks;
++  /* The launcher's About page: body text (UTF-8, blank lines split
++   * paragraphs), an image under assets/img drawn after it, and a link button.
++   * about_text NULL: no About page. */
++  const char *about_text;
++  const char *about_image;
++  const char *about_link_url;
++  const char *about_link_label;
++
+   /* Optional title policy after the shared launcher has been seeded. */
+   void (*configure_launcher)(struct RecompLauncherCGameInfo *info);
+   /* Before a netplay launch commits mods. from_lobby distinguishes an
+diff --git a/runner/src/desktop/mmx_config.c b/runner/src/desktop/mmx_config.c
+index 93d3c3c..2c09b5f 100644
+--- a/runner/src/desktop/mmx_config.c
++++ b/runner/src/desktop/mmx_config.c
+@@ -888,6 +888,7 @@ void WriteConfigFile(const char *filename) {
+     { "Graphics", "DisplayAspect" },
+     { "Graphics", "OutputMethod" },
+     { "Graphics", "LinearFiltering" },
++    { "Graphics", "IntegerScale" },
+     { "Graphics", "Shader" },
+     { "Graphics", "Widescreen" },
+     { "Sound",    "EnableAudio" },
+diff --git a/runner/src/desktop/opengl.c b/runner/src/desktop/opengl.c
+index c42c761..d671d98 100644
+--- a/runner/src/desktop/opengl.c
++++ b/runner/src/desktop/opengl.c
+@@ -47,6 +47,9 @@ static uint8 *g_screen_buffer;
+ static size_t g_screen_buffer_size;
+ static int g_draw_width, g_draw_height;
+ static unsigned int g_program, g_flash_program, g_VAO;
++/* The host's in-game menu image (host_main.c); NULL unless one is open. */
++extern const uint32_t *g_rt_overlay_pixels;
++extern int g_rt_overlay_w, g_rt_overlay_h;
+ static GlTextureWithSize g_texture;
+ static GlslShader *g_glsl_shader;
+ static bool g_want_screenshot;
+@@ -415,6 +418,30 @@ static void OpenGLRenderer_EndDraw(void) {
+                       viewport.width, viewport.height);
+   }
+ 
++  /* The in-game menu, when the host has one open: a full-window image with
++   * its own alpha, blended over the picture. */
++  if (g_rt_overlay_pixels && g_rt_overlay_w > 0 && g_rt_overlay_h > 0) {
++    static GLuint overlay_tex;
++    if (!overlay_tex) {
++      glGenTextures(1, &overlay_tex);
++      glBindTexture(GL_TEXTURE_2D, overlay_tex);
++      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
++      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
++      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
++      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
++    }
++    glBindTexture(GL_TEXTURE_2D, overlay_tex);
++    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, g_rt_overlay_w, g_rt_overlay_h, 0, GL_BGRA,
++                 GL_UNSIGNED_INT_8_8_8_8_REV, g_rt_overlay_pixels);
++    glViewport(0, 0, drawable_width, drawable_height);
++    glUseProgram(g_program);
++    glEnable(GL_BLEND);
++    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
++    glBindVertexArray(g_VAO);
++    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
++    glDisable(GL_BLEND);
++  }
++
+   if (g_want_screenshot) {
+     g_want_screenshot = false;
+     SaveScreenshotBmp(drawable_width, drawable_height);

@@ -42,6 +42,7 @@ add_executable(SuperPunchOutRecomp
     src/host_contract.c
     src/game_rtl.c
     src/gen_stubs.c
+    src/superpunchout_extras.c
 )
 
 # ROM identity. rom_identity.txt is the one place the digests live: the build
@@ -142,3 +143,9 @@ add_custom_command(TARGET SuperPunchOutRecomp POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         ${CMAKE_SOURCE_DIR}/assets/controllers/gamecontrollerdb.txt
         $<TARGET_FILE_DIR:SuperPunchOutRecomp>/assets/gamecontrollerdb.txt)
+
+# The in-game menu (Esc): recomp-ui's runtime menu drawn by Dear ImGui on a
+# private hidden OpenGL context, then blended over the frozen game by the host.
+target_sources(SuperPunchOutRecomp PRIVATE
+    ${SNESRECOMP_ROOT}/host/snes_runtime_menu_gl.cpp)
+target_compile_definitions(SuperPunchOutRecomp PRIVATE SNESRECOMP_RUNTIME_MENU=1)
