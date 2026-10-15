@@ -56,8 +56,8 @@ both from ever being committed.
 ## Run
 
 ```sh
-./build/SuperPunchOutSNESRecomp                     # launcher picks the ROM
-./build/SuperPunchOutSNESRecomp /path/to/Super Punch-Out!! (USA).sfc # or name it and skip the launcher
+./build/SuperPunchOutRecomp                     # launcher picks the ROM
+./build/SuperPunchOutRecomp /path/to/Super Punch-Out!! (USA).sfc # or name it and skip the launcher
 ```
 
 With no ROM on the command line the build opens the recomp-ui launcher: a ROM

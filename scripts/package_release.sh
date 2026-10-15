@@ -40,17 +40,17 @@ done
 BUILD_DIR="${POS[0]:-${BUILD_DIR:-build}}"
 PLATFORM="${POS[1]:-${PLATFORM:-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m)}}"
 
-IMPL="snesrecomp/tools/ci/stage_setup_host.sh"
+IMPL="vendor/snesrecomp/tools/ci/stage_setup_host.sh"
 if [ ! -f "$IMPL" ]; then
   echo "package_release.sh: $IMPL missing — the snesrecomp pin predates setup packs." >&2
-  echo "  Update the submodule: git submodule update --init --recursive" >&2
+  echo "  Re-run ./setup.sh" >&2
   exit 1
 fi
 
 # The ROM hint and digests come from rom_identity.txt -- the same file the
 # build compiles in and tools/regen.sh verifies against -- so a revision bump
 # is one edit. stage_setup_host.sh already needs python3, so this does too.
-IDENTITY_TOOL="snesrecomp/tools/rom_identity.py"
+IDENTITY_TOOL="vendor/snesrecomp/tools/rom_identity.py"
 ROM_FILE="$(python3 "$IDENTITY_TOOL" rom_identity.txt --get rom_file)"
 ROM_SHA256="$(python3 "$IDENTITY_TOOL" rom_identity.txt --get expected_sha256)"
 ROM_CRC32="$(python3 "$IDENTITY_TOOL" rom_identity.txt --get expected_crc32)"
@@ -62,7 +62,7 @@ exec bash "$IMPL" \
   --runtime-dir mods \
   --build-dir "$BUILD_DIR" \
   --artifact "$PLATFORM" \
-  --exe-name SuperPunchOutSNESRecomp \
+  --exe-name SuperPunchOutRecomp \
   --zip-prefix superpunchout \
   --display-name "Super Punch-Out!!" \
   --rom-hint "$ROM_FILE" \

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(SuperPunchOutSNESRecomp C CXX)
+project(SuperPunchOutRecomp C CXX)
 
 set(CMAKE_C_STANDARD 11)
 
@@ -20,12 +20,12 @@ if(SNESRECOMP_BUILD_VERSION STREQUAL "")
     endif()
 endif()
 
-set(SNESRECOMP_ROOT "${CMAKE_SOURCE_DIR}/snesrecomp" CACHE PATH
+set(SNESRECOMP_ROOT "${CMAKE_SOURCE_DIR}/vendor/snesrecomp" CACHE PATH
     "Path to the snesrecomp checkout used by this game")
 if(NOT EXISTS "${SNESRECOMP_ROOT}/runner/runner.cmake")
     message(FATAL_ERROR
-        "snesrecomp submodule missing at ${SNESRECOMP_ROOT}.\n"
-        "Run: git submodule update --init --recursive")
+        "snesrecomp missing at ${SNESRECOMP_ROOT}.\n"
+        "Run: ./setup.sh")
 endif()
 # Mod packages are part of every project, not an option. The launcher's Mods
 # page, the .snesmod loader, the trusted-plugin registry and netplay's mod-set
@@ -36,7 +36,7 @@ set(SNESRECOMP_ENABLE_MODS ON CACHE BOOL
     "Mod package loader + trusted plugins (required for every title)" FORCE)
 include(${SNESRECOMP_ROOT}/runner/runner.cmake)
 
-add_executable(SuperPunchOutSNESRecomp
+add_executable(SuperPunchOutRecomp
     ${SNESRECOMP_RUNNER_SOURCES}
     src/main.c
     src/host_contract.c
@@ -48,7 +48,7 @@ add_executable(SuperPunchOutSNESRecomp
 # turns it into snesrecomp_rom_identity.h (SNESRECOMP_ROM_EXPECTED_SHA256 and
 # friends) for src/main.c, and tools/regen.sh, scripts/package_release.sh and
 # the release workflow read the same file. A revision bump is one edit there.
-snesrecomp_rom_identity(SuperPunchOutSNESRecomp ${CMAKE_SOURCE_DIR}/rom_identity.txt)
+snesrecomp_rom_identity(SuperPunchOutRecomp ${CMAKE_SOURCE_DIR}/rom_identity.txt)
 
 # Generated recompiler output. Not committed: it is derived from a copyrighted
 # ROM, so every developer regenerates it locally from their own copy -- and a
@@ -58,7 +58,7 @@ snesrecomp_rom_identity(SuperPunchOutSNESRecomp ${CMAKE_SOURCE_DIR}/rom_identity
 # That is what release zips contain; the player's machine produces the
 # playable binary from their own ROM. Without the option an empty src/gen/ is
 # still a hard error (the framework owns the message).
-snesrecomp_target_generated_code(SuperPunchOutSNESRecomp ${CMAKE_SOURCE_DIR}/src/gen)
+snesrecomp_target_generated_code(SuperPunchOutRecomp ${CMAKE_SOURCE_DIR}/src/gen)
 
 # The mod catalog. This names WHERE the packages are; the framework owns the
 # layout they are staged into beside the executable, and stages them on every
@@ -73,11 +73,11 @@ snesrecomp_target_generated_code(SuperPunchOutSNESRecomp ${CMAKE_SOURCE_DIR}/src
 # workspace ended up shipping an empty Mods page and nothing said so. Declaring
 # it is now also enforced: a project with packages that never calls this fails
 # to configure.
-snesrecomp_target_mod_catalog(SuperPunchOutSNESRecomp ${CMAKE_SOURCE_DIR}/mods/preloaded)
+snesrecomp_target_mod_catalog(SuperPunchOutRecomp ${CMAKE_SOURCE_DIR}/mods/preloaded)
 # Any other directory the game reads exe-relative (a translations/ table, ...)
 # is staged with snesrecomp_target_stage_dir, never with a separate ALL target.
 
-target_include_directories(SuperPunchOutSNESRecomp PRIVATE
+target_include_directories(SuperPunchOutRecomp PRIVATE
     ${SNESRECOMP_RUNNER_INCLUDE_DIRS}
     # common_rtl.c includes "config.h": the desktop key-map / Config contract
     # the framework host supplies (snesrecomp_target_desktop_host below).
@@ -85,12 +85,12 @@ target_include_directories(SuperPunchOutSNESRecomp PRIVATE
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/recomp
 )
-target_link_libraries(SuperPunchOutSNESRecomp PRIVATE ${SNESRECOMP_RUNNER_LIBRARIES})
-target_compile_definitions(SuperPunchOutSNESRecomp PRIVATE
+target_link_libraries(SuperPunchOutRecomp PRIVATE ${SNESRECOMP_RUNNER_LIBRARIES})
+target_compile_definitions(SuperPunchOutRecomp PRIVATE
     SNES_GAME_VERSION="${SNESRECOMP_BUILD_VERSION}"
     SNES_GAME_TITLE="Super Punch-Out!!"
 )
-snesrecomp_target_sdl(SuperPunchOutSNESRecomp)
+snesrecomp_target_sdl(SuperPunchOutRecomp)
 
 # The desktop host: launcher flow, ROM resolution, config.ini + [KeyMap],
 # window + SDL/OpenGL presenters, audio, gamepads, the save-state browser and
@@ -98,27 +98,27 @@ snesrecomp_target_sdl(SuperPunchOutSNESRecomp)
 # report. src/main.c is the shim that names this title and supplies its
 # hooks; the host is the framework's and improves on a submodule pull.
 # Add TIER2 once this port reads the interpreter-gap manifest after each run.
-snesrecomp_target_desktop_host(SuperPunchOutSNESRecomp)
+snesrecomp_target_desktop_host(SuperPunchOutRecomp)
 # rom.cfg (the ROM the wizard set this project up from; git-ignored) is
 # staged beside the executable when none is there yet, so the first launch
 # opens on that dump rather than asking for one.
-snesrecomp_target_rom_cache(SuperPunchOutSNESRecomp)
+snesrecomp_target_rom_cache(SuperPunchOutRecomp)
 
 # Shared Dear ImGui pre-boot launcher (ROM picker, verification, display /
 # audio / input settings). Self-contained: it brings its own ImGui, GL link and
 # staged assets, and defines RECOMP_LAUNCHER so src/main.c compiles its GUI path.
-set(RECOMP_UI_ROOT "${CMAKE_SOURCE_DIR}/recomp-ui" CACHE PATH
-    "Root directory of the recomp-ui launcher repo" FORCE)
+set(RECOMP_UI_ROOT "${CMAKE_SOURCE_DIR}/vendor/recomp-ui" CACHE PATH
+    "Root directory of the recomp-ui launcher repo")
 if(NOT EXISTS "${RECOMP_UI_ROOT}/recomp_ui.cmake")
     message(FATAL_ERROR
         "recomp-ui missing at ${RECOMP_UI_ROOT}.\n"
-        "Run: git submodule update --init --recursive recomp-ui")
+        "Run: ./setup.sh")
 endif()
 include(${RECOMP_UI_ROOT}/recomp_ui.cmake)
 # BOXART stages launcher_assets/img/boxart.tga beside the exe; the launcher
 # shows assets/img/boxart.tga by default. EXISTS-guarded in recomp_ui.cmake,
 # so this configures cleanly before any art is fetched.
-recomp_target_launcher_ui(SuperPunchOutSNESRecomp CONSOLE snes
+recomp_target_launcher_ui(SuperPunchOutRecomp CONSOLE snes
     BOXART "${CMAKE_SOURCE_DIR}/launcher_assets/img/boxart.tga")
 
 # Generate & rebuild from inside the launcher: pick ROM -> recompile locally
@@ -126,9 +126,9 @@ recomp_target_launcher_ui(SuperPunchOutSNESRecomp CONSOLE snes
 # project contributes no configuration (snesrecomp_codegen_host_autowire in
 # src/main.c). recomp-ui/src is on the include path because the host speaks
 # RecompLauncherCGameInfo.
-target_sources(SuperPunchOutSNESRecomp PRIVATE
+target_sources(SuperPunchOutRecomp PRIVATE
     ${SNESRECOMP_ROOT}/host/snesrecomp_codegen_host.c)
-target_include_directories(SuperPunchOutSNESRecomp PRIVATE
+target_include_directories(SuperPunchOutRecomp PRIVATE
     ${SNESRECOMP_ROOT}/host
     ${RECOMP_UI_ROOT}/src)
 

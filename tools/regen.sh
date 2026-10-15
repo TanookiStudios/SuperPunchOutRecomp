@@ -35,10 +35,10 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-SNESRECOMP_ROOT="${SNESRECOMP_ROOT:-snesrecomp}"
+SNESRECOMP_ROOT="${SNESRECOMP_ROOT:-vendor/snesrecomp}"
 CLI="$SNESRECOMP_ROOT/snesrecomp_cli.py"
 if [ ! -f "$CLI" ]; then
-  echo "regen.sh: $CLI missing — run: git submodule update --init --recursive" >&2
+  echo "regen.sh: $CLI missing — run: ./setup.sh" >&2
   exit 1
 fi
 
