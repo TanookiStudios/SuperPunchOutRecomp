@@ -1,0 +1,100 @@
+diff --git a/runner/src/host_paths.c b/runner/src/host_paths.c
+index 216a8ff..b7cc046 100644
+--- a/runner/src/host_paths.c
++++ b/runner/src/host_paths.c
+@@ -24,6 +24,7 @@
+ #endif
+ #ifdef __APPLE__
+ #  include <mach-o/dyld.h>
++#  include <sys/stat.h>
+ #endif
+ 
+ /* Full path of the running executable. Returns 1 on success. Platforms
+@@ -130,9 +131,67 @@ int snesrecomp_exe_basename(char *out, size_t max_len) {
+     return 1;
+ }
+ 
++#ifdef __APPLE__
++/* macOS: settings and saves live in ~/Library/Application Support/<program>/.
++ * Beside the program is read-only for a downloaded app (macOS runs it from a
++ * randomized read-only copy) and writing inside a signed .app breaks its
++ * signature. Files an earlier build kept beside the program are copied over
++ * once, never deleted. */
++static int mac_user_dir(char *out, size_t max_len) {
++    const char *home = getenv("HOME");
++    char name[256];
++    if (!home || !*home || !snesrecomp_exe_basename(name, sizeof(name))) return 0;
++    if (snprintf(out, max_len, "%s/Library/Application Support/%s/", home,
++                 name) >= (int)max_len)
++        return 0;
++    return 1;
++}
++
++static void mac_mkdir_p(const char *dir) {
++    char d[1024];
++    snprintf(d, sizeof(d), "%s", dir);
++    for (char *p = d + 1; *p; ++p)
++        if (*p == '/') { *p = 0; mkdir(d, 0755); *p = '/'; }
++    mkdir(d, 0755);
++}
++
++static void mac_copy_if_missing(const char *from, const char *to) {
++    struct stat st;
++    if (stat(to, &st) == 0 || stat(from, &st) != 0) return;
++    FILE *in = fopen(from, "rb"), *out = in ? fopen(to, "wb") : NULL;
++    char buf[8192];
++    size_t n;
++    while (in && out && (n = fread(buf, 1, sizeof(buf), in)) > 0) fwrite(buf, 1, n, out);
++    if (in) fclose(in);
++    if (out) fclose(out);
++}
++
++static void mac_migrate(const char *old_dir, const char *new_dir) {
++    static const char *const names[] = {
++        "config.ini", "rom.cfg", "keybinds.ini", "saves/save.srm"};
++    char to_saves[1024];
++    snprintf(to_saves, sizeof(to_saves), "%ssaves", new_dir);
++    mkdir(to_saves, 0755);
++    for (size_t i = 0; i < sizeof(names) / sizeof(names[0]); ++i) {
++        char from[1024], to[1024];
++        snprintf(from, sizeof(from), "%s%s", old_dir, names[i]);
++        snprintf(to, sizeof(to), "%s%s", new_dir, names[i]);
++        mac_copy_if_missing(from, to);
++    }
++}
++#endif
++
+ int snesrecomp_exe_dir_path(const char *leaf, char *out, size_t max_len) {
+     if (!leaf || !out || max_len == 0) return 0;
+     char dir[1024];
++#ifdef __APPLE__
++    /* Files the player's settings own (not the program's own assets). */
++    if ((!strcmp(leaf, "config.ini") || !strcmp(leaf, "rom.cfg")) &&
++        mac_user_dir(dir, sizeof(dir))) {
++        if (snprintf(out, max_len, "%s%s", dir, leaf) >= (int)max_len) return 0;
++        return 1;
++    }
++#endif
+     get_exe_dir(dir, sizeof(dir));
+     if (dir[0] == '.' &&
+         (dir[1] == '/' || dir[1] == '\\' || dir[1] == '\0'))
+@@ -157,6 +216,19 @@ static int dir_is_writable(const char *dir) {
+ 
+ int snesrecomp_anchor_to_exe_dir(void) {
+     char dir[1024];
++#ifdef __APPLE__
++    char user[1024];
++    if (mac_user_dir(user, sizeof(user))) {
++        char old_dir[1024];
++        get_exe_dir(old_dir, sizeof(old_dir));
++        mac_mkdir_p(user);
++        mac_migrate(old_dir, user);
++        if (snesrecomp_chdir(user) == 0) {
++            fprintf(stderr, "[Launcher] Config/saves anchored to '%s'.\n", user);
++            return 1;
++        }
++    }
++#endif
+     get_exe_dir(dir, sizeof(dir));
+     if (dir[0] == '.' &&
+         (dir[1] == '/' || dir[1] == '\\' || dir[1] == '\0'))
