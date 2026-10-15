@@ -35,10 +35,12 @@
 #include "game_rtl.h"
 
 #include "beam_frame_driver.h"
+#include "superpunchout_extras.h"
 
 void GameRunOneFrame(void)
 {
     snes_beam_frame_driver_run_frame();
+    SpoCheatsApplyAfterFrame();
 }
 
 void GameDrawPpuFrame(void)

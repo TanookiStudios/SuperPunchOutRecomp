@@ -43,6 +43,7 @@ add_executable(SuperPunchOutRecomp
     src/game_rtl.c
     src/gen_stubs.c
     src/superpunchout_extras.c
+    src/superpunchout_ui.c
 )
 
 # ROM identity. rom_identity.txt is the one place the digests live: the build
@@ -119,8 +120,10 @@ include(${RECOMP_UI_ROOT}/recomp_ui.cmake)
 # BOXART stages launcher_assets/img/boxart.tga beside the exe; the launcher
 # shows assets/img/boxart.tga by default. EXISTS-guarded in recomp_ui.cmake,
 # so this configures cleanly before any art is fetched.
+# BRAND: the launcher's header mark is our own icon, not the console maker's logo.
 recomp_target_launcher_ui(SuperPunchOutRecomp CONSOLE snes
-    BOXART "${CMAKE_SOURCE_DIR}/launcher_assets/img/boxart.tga")
+    BOXART "${CMAKE_SOURCE_DIR}/launcher_assets/img/boxart.tga"
+    BRAND "${CMAKE_SOURCE_DIR}/assets/icon/superpunchout-256.png")
 
 # Generate & rebuild from inside the launcher: pick ROM -> recompile locally
 # -> cmake --build -> relaunch. The implementation is the framework's; this
@@ -149,3 +152,9 @@ add_custom_command(TARGET SuperPunchOutRecomp POST_BUILD
 target_sources(SuperPunchOutRecomp PRIVATE
     ${SNESRECOMP_ROOT}/host/snes_runtime_menu_gl.cpp)
 target_compile_definitions(SuperPunchOutRecomp PRIVATE SNESRECOMP_RUNTIME_MENU=1)
+
+# Maddie's signature for the launcher's About page (assets/img beside the program).
+add_custom_command(TARGET SuperPunchOutRecomp POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:SuperPunchOutRecomp>/assets/img
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/assets/signature.png
+            $<TARGET_FILE_DIR:SuperPunchOutRecomp>/assets/img/maddie-signature.png)

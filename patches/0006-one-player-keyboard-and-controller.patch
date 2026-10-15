@@ -1,0 +1,54 @@
+diff --git a/runner/src/desktop/host_main.c b/runner/src/desktop/host_main.c
+index c046001..52f5c39 100644
+--- a/runner/src/desktop/host_main.c
++++ b/runner/src/desktop/host_main.c
+@@ -3071,7 +3071,8 @@ static void LauncherSeed(RecompLauncherCSettings *ls, RecompLauncherCGameInfo *g
+    * unconditionally is what turned "player 2 on the keyboard" into
+    * "player 2 unassigned" on every relaunch. */
+   ls->player_src[0] = ConfigHasPlayerSource(0) ? g_config.player_src[0]
+-                                               : (g_config.enable_gamepad[0] ? 2 : 1);
++                                               : (g_config.enable_gamepad[0] &&
++                                                  game->num_players != 1 ? 2 : 1);
+   ls->player_src[1] = ConfigHasPlayerSource(1) ? g_config.player_src[1]
+                                                : (g_config.enable_gamepad[1] ? 2 : 0);
+   for (int seat = 2; seat < kSnesHostPadSeats && seat < RECOMP_LAUNCHER_MAX_PLAYERS; ++seat)
+@@ -3221,7 +3222,8 @@ static void LauncherCommit(const RecompLauncherCSettings *ls, const char *config
+     /* Seats past the game's count are not on the launcher's page; keep them. */
+     if (seat >= 2 && seat >= HostConfiguredSeats()) break;
+     g_config.player_src[seat]     = ls->player_src[seat];
+-    g_config.enable_gamepad[seat] = ls->player_src[seat] == 2;
++    g_config.enable_gamepad[seat] = ls->player_src[seat] == 2 ||
++        (seat == 0 && g_game->num_players == 1 && ls->player_src[0] != 0);
+   }
+   g_config.gamepad_deadzone    = (ls->deadzone[0] * 32767 + 50) / 100;
+   g_config.skip_launcher       = ls->skip_launcher != 0;
+@@ -4882,10 +4884,18 @@ error_reading:;
+  * to draw a second one -- bare white digits in the frame's corner -- so a
+  * player who pressed the key saw two counters that disagreed. */
+ 
++/* A one-player game gives player 1 the keyboard AND the first controller at
++ * once, whichever the launcher's row says, so plugging a pad in just works
++ * and nobody has to find a setting. Only "None" turns the keyboard off. */
++static bool SeatReadsKeyboard(int seat) {
++  const int src = g_config.player_src[seat];
++  return src == 1 || (seat == 0 && g_game->num_players == 1 && src == 2);
++}
++
+ static void PollKeyboardControls(const uint8_t *keys) {
+   /* Replace the whole keyboard word so changing a seat to Gamepad/None also
+    * releases keys held under its previous assignment. Hotkeys remain separate. */
+-  uint32 p1 = g_config.player_src[0] == 1 ? keybinds_read_player_runner(keys, 1) : 0;
++  uint32 p1 = SeatReadsKeyboard(0) ? keybinds_read_player_runner(keys, 1) : 0;
+   uint32 p2 = g_config.player_src[1] == 1 ? keybinds_read_player_runner(keys, 2) : 0;
+   g_input_state = p1 | (p2 << 12);
+   for (int seat = 2; seat < kSnesHostPadSeats; ++seat)
+@@ -5032,7 +5042,8 @@ static void RequestScreenshot(void) {
+ 
+ static uint32 GetActiveControllers(void) {
+   uint32 ctrl = g_script_controllers |
+-                (g_config.player_src[0] == 1 ? 1u : 0u) |
++                (g_game->num_players == 1 ? (g_config.player_src[0] != 0 ? 1u : 0u)
++                                          : (g_config.player_src[0] == 1 ? 1u : 0u)) |
+                 (g_config.player_src[1] == 1 ? 2u : 0u);
+   ctrl |= g_gamepad[0].joystick_id != -1 ? 1 : 0;
+   ctrl |= g_gamepad[1].joystick_id != -1 ? 2 : 0;

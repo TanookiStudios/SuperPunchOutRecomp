@@ -28,6 +28,8 @@
 #include "host_main.h"
 #include "game_rtl.h"
 #include "snesrecomp_rom_identity.h"  /* generated from rom_identity.txt */
+#include "recomp_launcher.h"
+#include "superpunchout_ui.h"
 
 #ifndef __ANDROID__
 #define SDL_MAIN_HANDLED 1
@@ -41,6 +43,12 @@
 #ifndef SNES_GAME_VERSION
 #define SNES_GAME_VERSION "dev"
 #endif
+
+/* The launcher shows Game, Settings and About; mod packages have no page here. */
+static void ConfigureLauncher(struct RecompLauncherCGameInfo *info)
+{
+    info->mods = NULL;
+}
 
 static const SnesDesktopHostGame kGameHost = {
     .display_name        = "Super Punch-Out!!",
@@ -56,6 +64,15 @@ static const SnesDesktopHostGame kGameHost = {
     /* Battery-backed SRAM shows the launcher's SAVES panel. Leave NULL for a
      * title without one. The path is exe-relative. */
     .sram_path           = "saves/save.srm",
+    .menu_items          = kSpoMenuItems,
+    .menu_item_count     = SPO_MENU_ITEM_COUNT,
+    .menu_callbacks      = &kSpoMenuCallbacks,
+    .about_text          = kSpoAboutText,
+    .about_image         = "maddie-signature.png",   /* assets/signature.png, staged by CMakeLists.txt */
+    .about_link_url      = "https://tanookistudios.com/SupportMe",
+    .about_link_label    = "Leave a Tip",
+    .after_config        = SpoUiLoad,
+    .configure_launcher  = ConfigureLauncher,
 };
 
 #ifndef __ANDROID__
