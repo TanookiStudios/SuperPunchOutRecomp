@@ -134,3 +134,11 @@ target_include_directories(SuperPunchOutRecomp PRIVATE
 
 # Netplay is not built into this target.
 # No multitap: two seats, one controller per port.
+
+# Community controller database, loaded at start (and the player's own
+# gamecontrollerdb.txt in the settings folder on top of it).
+add_custom_command(TARGET SuperPunchOutRecomp POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:SuperPunchOutRecomp>/assets
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_SOURCE_DIR}/assets/controllers/gamecontrollerdb.txt
+        $<TARGET_FILE_DIR:SuperPunchOutRecomp>/assets/gamecontrollerdb.txt)

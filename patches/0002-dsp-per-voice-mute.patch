@@ -1,0 +1,47 @@
+diff --git a/runner/src/snes/dsp.c b/runner/src/snes/dsp.c
+index 17304fd..5936cf5 100644
+--- a/runner/src/snes/dsp.c
++++ b/runner/src/snes/dsp.c
+@@ -163,13 +163,19 @@ void dsp_saveload(Dsp *dsp, SaveLoadInfo *sli) {
+   sli->func(sli, &dsp->ram, sizeof(Dsp) - offsetof(Dsp, ram));
+ }
+ 
++/* Bit i silences voice i in the mix (dry and echo input) only; the voices keep
++ * running, so pitch modulation and game timing are unchanged. */
++uint8_t g_dsp_voice_mute_mask;
++
+ void dsp_cycle(Dsp* dsp) {
+   int totalL = 0;
+   int totalR = 0;
+   for(int i = 0; i < 8; i++) {
+     dsp_cycleChannel(dsp, i);
+-    totalL += (dsp->channel[i].sampleOut * dsp->channel[i].volumeL) >> 6;
+-    totalR += (dsp->channel[i].sampleOut * dsp->channel[i].volumeR) >> 6;
++    if (!(g_dsp_voice_mute_mask & (1u << i))) {
++      totalL += (dsp->channel[i].sampleOut * dsp->channel[i].volumeL) >> 6;
++      totalR += (dsp->channel[i].sampleOut * dsp->channel[i].volumeR) >> 6;
++    }
+     totalL = totalL < -0x8000 ? -0x8000 : (totalL > 0x7fff ? 0x7fff : totalL); // clamp 16-bit
+     totalR = totalR < -0x8000 ? -0x8000 : (totalR > 0x7fff ? 0x7fff : totalR); // clamp 16-bit
+   }
+@@ -250,7 +256,7 @@ static void dsp_handleEcho(Dsp* dsp, int* outputL, int* outputR) {
+   // get echo input
+   int inL = 0, inR = 0;
+   for(int i = 0; i < 8; i++) {
+-    if(dsp->channel[i].echoEnable) {
++    if(dsp->channel[i].echoEnable && !(g_dsp_voice_mute_mask & (1u << i))) {
+       inL += (dsp->channel[i].sampleOut * dsp->channel[i].volumeL) >> 6;
+       inR += (dsp->channel[i].sampleOut * dsp->channel[i].volumeR) >> 6;
+       inL = inL < -0x8000 ? -0x8000 : (inL > 0x7fff ? 0x7fff : inL); // clamp 16-bit
+diff --git a/runner/src/snes/dsp.h b/runner/src/snes/dsp.h
+index 5088a31..ea4220d 100644
+--- a/runner/src/snes/dsp.h
++++ b/runner/src/snes/dsp.h
+@@ -107,6 +107,7 @@ Dsp *dsp_init(uint8_t *ram);
+ void dsp_free(Dsp* dsp);
+ void dsp_reset(Dsp* dsp);
+ void dsp_cycle(Dsp* dsp);
++extern uint8_t g_dsp_voice_mute_mask; /* bit i silences voice i in the mix */
+ uint8_t dsp_read(Dsp* dsp, uint8_t adr);
+ void dsp_write(Dsp* dsp, uint8_t adr, uint8_t val);
+ /* Native-rate output-ring access. The consumer (RtlRenderAudio) reconciles the

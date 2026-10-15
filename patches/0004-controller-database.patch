@@ -1,0 +1,28 @@
+diff --git a/runner/src/desktop/host_main.c b/runner/src/desktop/host_main.c
+index efc5b22..4672f0c 100644
+--- a/runner/src/desktop/host_main.c
++++ b/runner/src/desktop/host_main.c
+@@ -3500,6 +3500,23 @@ int snesrecomp_desktop_main(const SnesDesktopHostGame *game, int argc, char **ar
+     printf("Failed to init SDL: %s\n", SDL_GetError());
+     return 1;
+   }
++  /* The community controller database shipped beside the program, then the
++   * player's own mappings in the settings folder (the working directory),
++   * so a pad SDL doesn't know by name still gets its real layout. */
++  {
++    char db[1100];
++    const char *base = SDL_GetBasePath();
++    snprintf(db, sizeof(db), "%sassets/gamecontrollerdb.txt", base ? base : "");
++    const char *const files[] = { db, "gamecontrollerdb.txt" };
++    for (int k = 0; k < 2; ++k) {
++#if SNESRECOMP_SDL3
++      int n = SDL_AddGamepadMappingsFromFile(files[k]);
++#else
++      int n = SDL_GameControllerAddMappingsFromFile(files[k]);
++#endif
++      if (n > 0) host_report_breadcrumb("controller database: %d mappings from %s", n, files[k]);
++    }
++  }
+   host_report_breadcrumb("SDL init ok: video=%s audio=%s",
+                          SDL_GetCurrentVideoDriver() ? SDL_GetCurrentVideoDriver() : "(none)",
+                          SDL_GetCurrentAudioDriver() ? SDL_GetCurrentAudioDriver() : "(none)");

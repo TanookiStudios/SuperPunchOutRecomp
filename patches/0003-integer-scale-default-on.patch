@@ -1,0 +1,120 @@
+diff --git a/runner/src/desktop/config.h b/runner/src/desktop/config.h
+index f42a5dc..aaed287 100644
+--- a/runner/src/desktop/config.h
++++ b/runner/src/desktop/config.h
+@@ -91,6 +91,7 @@ typedef struct Config {
+   uint8 window_scale;
+   bool enable_audio;
+   bool linear_filtering;
++  bool integer_scale;       /* snap the picture to whole-number zoom */
+   uint8 output_method;
+   uint16 audio_freq;
+   uint8 audio_channels;
+diff --git a/runner/src/desktop/host_main.c b/runner/src/desktop/host_main.c
+index 3bc3905..efc5b22 100644
+--- a/runner/src/desktop/host_main.c
++++ b/runner/src/desktop/host_main.c
+@@ -396,11 +396,18 @@ static int VSyncInterval(void) {
+ 
+ static int WindowBaseWidth(int frame_w) {
+   if (g_game->window_base_width) return g_game->window_base_width(frame_w);
++  if (g_config.integer_scale) {
++    int w, h;
++    SnesDisplayAspect_ComputePresentationSize(frame_w, 224,
++        SnesDisplayAspect_Clamp(g_config.display_aspect), &w, &h);
++    return w;
++  }
+   /* 4:3 on a 240-line window: 256 -> 320. */
+   return (frame_w * 5 + 2) / 4;
+ }
+ static int WindowBaseHeight(void) {
+   if (g_game->window_base_height) return g_game->window_base_height();
++  if (g_config.integer_scale) return 224;
+   return 240;
+ }
+ 
+@@ -2265,7 +2272,7 @@ static void SdlRenderer_BeginDraw(int width, int height, uint8 **pixels, int *pi
+   SnesDisplayViewport viewport;
+   SnesDisplayAspect_ComputeViewport(width, height, output_width, output_height,
+                                     SnesDisplayAspect_Clamp(g_config.display_aspect),
+-                                    g_config.ignore_aspect_ratio, false, &viewport);
++                                    g_config.ignore_aspect_ratio, g_config.integer_scale, &viewport);
+   if (g_game->compute_viewport)
+     g_game->compute_viewport(width, height, output_width, output_height, &viewport);
+   g_sdl_present_rect.x = viewport.x;
+@@ -2643,6 +2650,7 @@ static void LauncherSeed(RecompLauncherCSettings *ls, RecompLauncherCGameInfo *g
+   ls->fullscreen    = g_config.fullscreen;
+   ls->ignore_aspect = g_config.ignore_aspect_ratio;
+   ls->linear_filter = g_config.linear_filtering;
++  ls->integer_scale = g_config.integer_scale;
+   ls->aspect_index = SnesDisplayAspect_Clamp(g_config.display_aspect);
+   if (g_config.shader)
+     snprintf(ls->shader_path, sizeof(ls->shader_path), "%s", g_config.shader);
+@@ -2734,6 +2742,7 @@ static void LauncherSeed(RecompLauncherCSettings *ls, RecompLauncherCGameInfo *g
+   }
+   /* Rewind rows. The runtime has always had the ring; without this the
+    * player has no way to size it or switch it off. */
++  gi->has_integer_scale = 1;
+   gi->has_rewind_depth = game->rewind_settings ? 1 : 0;
+   gi->has_run_ahead    = 1;   /* the runtime snapshots a machine in a frame */
+   gi->has_vsync        = 1;
+@@ -2780,6 +2789,7 @@ static void LauncherCommit(const RecompLauncherCSettings *ls, const char *config
+   g_config.window_scale        = (uint8)ls->window_scale;
+   g_config.fullscreen          = (uint8)ls->fullscreen;
+   g_config.ignore_aspect_ratio = ls->ignore_aspect != 0;
++  g_config.integer_scale       = ls->integer_scale != 0;
+   g_config.linear_filtering    = ls->linear_filter != 0;
+   if (game->display_aspect_supported)
+     g_config.display_aspect = (uint8)SnesDisplayAspect_Clamp(ls->aspect_index);
+@@ -3147,6 +3157,7 @@ int snesrecomp_desktop_main(const SnesDesktopHostGame *game, int argc, char **ar
+   if (game->in_game_launcher) ConfigUseInGameLauncherDefaults();
+   /* Before parsing: default [GamepadMap] rows exist for each routed seat. */
+   ConfigSetPadSeats(HostConfiguredSeats());
++  g_config.integer_scale = true;   /* default; config.ini may turn it off */
+   ParseConfigFile(config_file);
+   g_active_config_file = config_file;
+   /* Local overrides (gitignored). Last parser to set a key wins. */
+@@ -4815,6 +4826,9 @@ static const char kDefaultConfigIniContent[] =
+   "# Don't keep the aspect ratio\n"
+   "IgnoreAspectRatio = 0\n"
+   "\n"
++  "# Whole-number zoom keeps every pixel sharp\n"
++  "IntegerScale = 1\n"
++  "\n"
+   "# Remove the sprite limits per scan line\n"
+   "NoSpriteLimits = 1\n"
+   "\n"
+diff --git a/runner/src/desktop/mmx_config.c b/runner/src/desktop/mmx_config.c
+index 2743775..93d3c3c 100644
+--- a/runner/src/desktop/mmx_config.c
++++ b/runner/src/desktop/mmx_config.c
+@@ -564,6 +564,8 @@ static bool HandleIniConfig(int section, const char *key, char *value) {
+       return true;
+     } else if (StringEqualsNoCase(key, "LinearFiltering")) {
+       return ParseBool(value, &g_config.linear_filtering);
++    } else if (StringEqualsNoCase(key, "IntegerScale")) {
++      return ParseBool(value, &g_config.integer_scale);
+     } else if (StringEqualsNoCase(key, "NoSpriteLimits")) {
+       return ParseBool(value, &g_config.no_sprite_limits);
+     } else if (StringEqualsNoCase(key, "Widescreen")) {
+@@ -926,6 +928,7 @@ void WriteConfigFile(const char *filename) {
+          g_config.output_method == kOutputMethod_OpenGL ? "OpenGL" :
+          g_config.output_method == kOutputMethod_SDLSoftware ? "SDL-Software" : "SDL");
+   CfgSet(kvs, N, "Graphics", "LinearFiltering", "%d", g_config.linear_filtering ? 1 : 0);
++  CfgSet(kvs, N, "Graphics", "IntegerScale", "%d", g_config.integer_scale ? 1 : 0);
+   CfgSet(kvs, N, "Graphics", "Shader", "%s", g_config.shader ? g_config.shader : "");
+   CfgSet(kvs, N, "Graphics", "Widescreen", "%d", g_config.widescreen ? 1 : 0);
+   CfgSet(kvs, N, "Sound", "EnableAudio", "%d", g_config.enable_audio ? 1 : 0);
+diff --git a/runner/src/desktop/opengl.c b/runner/src/desktop/opengl.c
+index e9063a7..c42c761 100644
+--- a/runner/src/desktop/opengl.c
++++ b/runner/src/desktop/opengl.c
+@@ -386,7 +386,7 @@ static void OpenGLRenderer_EndDraw(void) {
+   SnesDisplayAspect_ComputeViewport(
+       g_draw_width, g_draw_height, drawable_width, drawable_height,
+       SnesDisplayAspect_Clamp(g_config.display_aspect),
+-      g_config.ignore_aspect_ratio, false, &viewport);
++      g_config.ignore_aspect_ratio, g_config.integer_scale, &viewport);
+   if (g_compute_viewport)
+     g_compute_viewport(g_draw_width, g_draw_height, drawable_width, drawable_height, &viewport);
+ 
