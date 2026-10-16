@@ -35,10 +35,26 @@
 #include "game_rtl.h"
 
 #include "beam_frame_driver.h"
+#include "snes/dma.h"
+#include "cpu_state.h"
 #include "superpunchout_extras.h"
 
 void GameRunOneFrame(void)
 {
+    /* This game switches its screen effects on partway down the picture and
+     * relies on them staying idle until the next field. */
+    g_dma_hdma_midframe_inert = 2;
+    static int excluded;
+    if (!excluded) {
+        /* Long routines that run to the end once started: left translated they
+         * hold back the game's raster interrupts, which turns the picture on
+         * late and hides the top bar. They run in the interpreter instead.
+         * (Found by comparing pictures with Snes9x, see tests/ref/README.md.) */
+        static const uint32 kInterpTargets[] = { 0x00CB50, 0x01F803, 0x00F440, 0x00FFA3, 0x018006, 0x088035,
+                                              0x00CA91, 0x01F800 };
+        interp_bridge_set_lle_bounce_exclusions(kInterpTargets, sizeof kInterpTargets / sizeof kInterpTargets[0]);
+        excluded = 1;
+    }
     snes_beam_frame_driver_run_frame();
     SpoCheatsApplyAfterFrame();
 }

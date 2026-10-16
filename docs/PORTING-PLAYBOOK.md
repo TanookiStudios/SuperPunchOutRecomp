@@ -217,6 +217,15 @@ settings folder follows the executable name).
   `..._DUMP=<ppm>`, `..._SCRIPT="down,accept"`, `..._PRESENT_DUMP=<ppm>`; launcher: `LNG_SCRIPT`.
 - **Cheats:** find what the game really has (Super Punch-Out has no hearts or stars; it has a super meter,
   health and REST tries). Prove each with a poke and a before/after, as in section 6; `notes/ram-map.md`.
+- **Always compare pictures with a trusted emulator, at full size.** Download the Snes9x libretro core
+  (outside the repo), build `tests/ref/refhost.c`, and run the same press/wait route in both. Super Punch-Out
+  looked fine in thumbnails and was visibly broken at full size (top bar flashing, garbled knockdown numbers).
+  With no input the title and demo should match Snes9x pixel for pixel; that is the quickest proof the engine
+  and the translated code are right. If the picture only breaks with translated code, bisect the routines
+  (delta-debug the function list) and run the culprits in the interpreter with
+  `interp_bridge_set_lle_bounce_exclusions` (long translated routines delay raster interrupts).
+- **HDMA switched on part-way down the picture** must carry on from where it last stopped, not restart its
+  table (`patches/0008`, `g_dma_hdma_midframe_inert = 2`, set from `GameRunOneFrame`). Snes9x does this.
 - **Releases** ship the compiled program (not a "setup host"): `tools/make_app.sh`, `make_windows_zip.sh`,
   `make_linux.sh`, each running `tools/release_scan.py` (fails if ROM bytes are in the package).
 

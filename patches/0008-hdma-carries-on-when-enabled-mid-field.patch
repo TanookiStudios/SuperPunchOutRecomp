@@ -1,0 +1,80 @@
+diff --git a/runner/src/snes/dma.c b/runner/src/snes/dma.c
+index 9fb6639..f54dbfb 100644
+--- a/runner/src/snes/dma.c
++++ b/runner/src/snes/dma.c
+@@ -370,10 +370,20 @@ static void dma_hdmaLoadDescriptor(Dma* dma, DmaChannel* ch) {
+   ch->doTransfer = !ch->terminated;
+ }
+ 
++int g_dma_hdma_midframe_inert;
++
+ void dma_initHdma(Dma* dma) {
+   for (int i = 0; i < 8; i++) {
+     DmaChannel* ch = &dma->channel[i];
+-    if (!ch->hdmaActive) continue;
++    if (!ch->hdmaActive) {
++      if (g_dma_hdma_midframe_inert == 2) {
++        /* A channel that is off at the top of the field is not "ended" and
++         * has nothing to transfer yet; it keeps its table position. */
++        ch->doTransfer = false;
++        ch->terminated = false;
++      }
++      continue;
++    }
+     dma->hdmaPendingInit &= (uint8_t)~(1u << i);
+     ch->tableAdr = ch->aAdr;
+     dma_hdmaLoadDescriptor(dma, ch);
+@@ -410,10 +420,23 @@ void dma_doHdma(Dma* dma) {
+      * $420C at line 21 and whose first HDMA write of $212C lands on line 23. */
+     if (dma->hdmaPendingInit & (1u << i)) {
+       dma->hdmaPendingInit &= (uint8_t)~(1u << i);
+-      ch->tableAdr = ch->aAdr;
+-      dma_hdmaLoadDescriptor(dma, ch);
+-      ch->offIndex = 0;
+-      continue;
++      if (g_dma_hdma_midframe_inert == 2) {
++        /* Switched on after the top of the field without a fresh start: the
++         * channel carries on from the table position and line counter it was
++         * left with (how Snes9x behaves, and what this game relies on). */
++      } else if (g_dma_hdma_midframe_inert) {
++        /* Hardware only initializes HDMA at the top of the field: a channel
++         * switched on later stays idle until the next field. */
++        ch->terminated = true;
++        ch->doTransfer = false;
++        continue;
++      }
++      if (g_dma_hdma_midframe_inert != 2) {
++        ch->tableAdr = ch->aAdr;
++        dma_hdmaLoadDescriptor(dma, ch);
++        ch->offIndex = 0;
++        continue;
++      }
+     }
+     if (ch->terminated) continue;
+ 
+diff --git a/runner/src/snes/dma.h b/runner/src/snes/dma.h
+index f55baf8..15db365 100644
+--- a/runner/src/snes/dma.h
++++ b/runner/src/snes/dma.h
+@@ -75,6 +75,8 @@ uint8_t dma_read(Dma* dma, uint16_t adr); // 43x0-43xf
+ void dma_write(Dma* dma, uint16_t adr, uint8_t val); // 43x0-43xf
+ void dma_doDma(Dma* dma);
+ void dma_initHdma(Dma* dma);
++/* Non-zero: HDMA channels enabled after the top of the field stay idle until the next field. */
++extern int g_dma_hdma_midframe_inert;
+ void dma_doHdma(Dma* dma);
+ void dma_primeHdmaFirstLine(Dma* dma);
+ uint64_t dma_hdmaMasterEstimate(Dma* dma);
+diff --git a/runner/src/snes/interp_bridge.c b/runner/src/snes/interp_bridge.c
+index c1e48eb..fe27439 100644
+--- a/runner/src/snes/interp_bridge.c
++++ b/runner/src/snes/interp_bridge.c
+@@ -609,7 +609,7 @@ static int      s_interp_bounce_recomp_base = -1;
+  * never a stale interpreter PC. Always published -- one store per step, next
+  * to the step ring's -- so attribution never depends on what was armed. */
+ uint32_t g_interp_wlog_pc24 = 0;
+-static uint32_t s_lle_bounce_exclusions[16];
++static uint32_t s_lle_bounce_exclusions[64];
+ static size_t   s_lle_bounce_exclusion_count;
+ 
+ /* Debug lever (SNESRECOMP_LLE_INTERP_TARGET_FILE): a file of hex PC24s, one per
