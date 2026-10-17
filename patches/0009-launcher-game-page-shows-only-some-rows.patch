@@ -1,0 +1,28 @@
+diff --git a/runner/src/desktop/host_main.c b/runner/src/desktop/host_main.c
+index 52f5c39..2dc4cb2 100644
+--- a/runner/src/desktop/host_main.c
++++ b/runner/src/desktop/host_main.c
+@@ -3185,7 +3185,8 @@ static void LauncherSeed(RecompLauncherCSettings *ls, RecompLauncherCGameInfo *g
+ #endif
+   /* The launcher's Game page (the title's own option rows) and About page. */
+   gi->game_items = game->menu_items;
+-  gi->game_item_count = game->menu_item_count;
++  gi->game_item_count = game->menu_launcher_item_count ? game->menu_launcher_item_count
++                                                       : game->menu_item_count;
+   gi->game_callbacks = game->menu_callbacks;
+   gi->about_text = game->about_text;
+   gi->about_image = game->about_image;
+diff --git a/runner/src/desktop/host_main.h b/runner/src/desktop/host_main.h
+index f031896..ff36dfe 100644
+--- a/runner/src/desktop/host_main.h
++++ b/runner/src/desktop/host_main.h
+@@ -194,6 +194,9 @@ typedef struct SnesDesktopHostGame {
+    * Types come from recomp-ui's recomp_runtime_ui.h. NULL / 0: none. */
+   const struct RecompRuntimeUiItem *menu_items;
+   size_t menu_item_count;
++  /* The launcher's Game page shows only the first this-many rows (0: all of them); the rest are
++   * for the in-game menu only, such as its About section. */
++  size_t menu_launcher_item_count;
+   const struct RecompRuntimeUiCallbacks *menu_callbacks;
+   /* The launcher's About page: body text (UTF-8, blank lines split
+    * paragraphs), an image under assets/img drawn after it, and a link button.

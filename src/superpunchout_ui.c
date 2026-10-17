@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "recomp_runtime_ui.h"
+#include "desktop/sdl_compat.h"
 #include "snes/dsp.h"          /* g_dsp_voice_mute_mask */
 #include "superpunchout_extras.h"
 
@@ -23,6 +24,20 @@ static const char *const kFighters[1 + FIGHTERS] = {
     "Narcis Prince (Special Circuit)", "Hoy Quarlow (Special Circuit)",
     "Rick Bruiser (Special Circuit)", "Nick Bruiser (Special Circuit)",
 };
+
+/* The letter, shared by the launcher's About page and the Esc menu's About section. */
+#define ABOUT_P1 "Hi, I'm Maddie. I make apps and games on my own at Tanooki Studios."
+#define ABOUT_P2 "Super Punch-Out!! is one of my favorite SNES games, and I wanted it to run on a modern " \
+                 "computer with crisp pixels, controllers that just work, and a few cheats for when a " \
+                 "fighter is being mean."
+#define ABOUT_P3 "It's free, and it'll stay free. You bring your own copy of the game; nothing from the " \
+                 "original cartridge ships with this. It isn't made by or affiliated with Nintendo."
+#define ABOUT_P4 "Making apps (including some decomps) is how I pay my bills. If this game brought you " \
+                 "some nostalgia and you got knocked out by Mr. Sandman more times than you'd like to " \
+                 "admit, feel free to drop me a tiny tip. It really helps!"
+
+static const char *const kBlank[] = { " " };
+#define INFO(key, label, desc) { key, "About", label, desc, RECOMP_RUNTIME_UI_CHOICE, 0, 0, 1, kBlank, 1, NULL }
 
 #define MUTE_DESC "Silences one of the SNES's eight sound voices. The game decides what each voice plays."
 #define BOOL_ROW(key, label, desc) { key, "Cheats", label, desc, \
@@ -47,6 +62,22 @@ const RecompRuntimeUiItem kSpoMenuItems[SPO_MENU_ITEM_COUNT] = {
       RECOMP_RUNTIME_UI_CHOICE, 0, FIGHTERS, 1, kFighters, 1 + FIGHTERS, NULL },
     { "spo.skip", "Cheats", "Skip to the next fight", "Ends the fight you are in as a win.",
       RECOMP_RUNTIME_UI_ACTION, 0, 0, 0, NULL, 0, NULL },
+    /* The About section of the Esc menu. The menu shows one line per label and per description, so the
+     * letter is broken into short lines. The rows stay selectable so the keys can scroll through it. */
+    INFO("spo.about.1", "Hi, I'm Maddie. I make apps and games on my own at Tanooki Studios.", ""),
+    INFO("spo.about.2", "Super Punch-Out!! is one of my favorite SNES games, and I",
+                        "wanted it to run on a modern computer with crisp pixels,"),
+    INFO("spo.about.3", "controllers that just work, and a few cheats for when a", "fighter is being mean."),
+    INFO("spo.about.4", "It's free, and it'll stay free. You bring your own copy of the",
+                        "game; nothing from the original cartridge ships with this."),
+    INFO("spo.about.5", "It isn't made by or affiliated with Nintendo.", ""),
+    INFO("spo.about.6", "Making apps (including some decomps) is how I pay my bills.",
+                        "If this game brought you some nostalgia and you got knocked out"),
+    INFO("spo.about.7", "by Mr. Sandman more times than you'd like to admit, feel free",
+                        "to drop me a tiny tip. It really helps!"),
+    { "spo.about.tip", "About", "Leave a Tip", "Opens tanookistudios.com/SupportMe in your browser.",
+      RECOMP_RUNTIME_UI_ACTION, 0, 0, 0, NULL, 0, NULL },
+    INFO("spo.about.sig", "- Maddie", "Tanooki Studios"),
 };
 
 static void save(void) {
@@ -93,7 +124,8 @@ static int mute_voice(const RecompRuntimeUiItem *it) {
 static int get_value(void *ctx, const RecompRuntimeUiItem *it, int *out) {
     (void)ctx;
     int v = mute_voice(it);
-    if (v >= 0) *out = (g_dsp_voice_mute_mask >> v) & 1;
+    if (it->key && !strncmp(it->key, "spo.about.", 10)) *out = 0;   /* reading rows */
+    else if (v >= 0) *out = (g_dsp_voice_mute_mask >> v) & 1;
     else if (!strcmp(it->key, "spo.meter")) *out = g_spo_cheats.infinite_stars;
     else if (!strcmp(it->key, "spo.hit")) *out = g_spo_cheats.cant_be_hit;
     else if (!strcmp(it->key, "spo.rest")) *out = g_spo_cheats.infinite_rest;
@@ -122,6 +154,7 @@ static int set_value(void *ctx, const RecompRuntimeUiItem *it, int value) {
 static int run_action(void *ctx, const RecompRuntimeUiItem *it) {
     (void)ctx;
     if (!strcmp(it->key, "spo.skip")) { g_spo_cheats.skip_to_next = 1; return 1; }
+    if (!strcmp(it->key, "spo.about.tip")) { SDL_OpenURL("https://tanookistudios.com/SupportMe"); return 1; }
     return 0;
 }
 
@@ -132,13 +165,4 @@ const RecompRuntimeUiCallbacks kSpoMenuCallbacks = {
     .run_action = run_action, .is_enabled = NULL, .save = save_cb,
 };
 
-const char kSpoAboutText[] =
-    "Hi, I'm Maddie. I make apps and games on my own at Tanooki Studios.\n\n"
-    "Super Punch-Out!! is one of my favorite SNES games, and I wanted it to run on a modern "
-    "computer with crisp pixels, controllers that just work, and a few cheats for when a "
-    "fighter is being mean.\n\n"
-    "It's free, and it'll stay free. You bring your own copy of the game; nothing from the "
-    "original cartridge ships with this. It isn't made by or affiliated with Nintendo.\n\n"
-    "Making apps (including some decomps) is how I pay my bills. If this game brought you "
-    "some nostalgia and you got knocked out by Mr. Sandman more times than you'd like to "
-    "admit, feel free to drop me a tiny tip. It really helps!";
+const char kSpoAboutText[] = ABOUT_P1 "\n\n" ABOUT_P2 "\n\n" ABOUT_P3 "\n\n" ABOUT_P4;

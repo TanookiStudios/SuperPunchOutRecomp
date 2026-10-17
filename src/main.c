@@ -66,6 +66,7 @@ static const SnesDesktopHostGame kGameHost = {
     .sram_path           = "saves/save.srm",
     .menu_items          = kSpoMenuItems,
     .menu_item_count     = SPO_MENU_ITEM_COUNT,
+    .menu_launcher_item_count = SPO_LAUNCHER_ITEM_COUNT,   /* the About rows are for the Esc menu only */
     .menu_callbacks      = &kSpoMenuCallbacks,
     .about_text          = kSpoAboutText,
     .about_image         = "maddie-signature.png",   /* assets/signature.png, staged by CMakeLists.txt */
