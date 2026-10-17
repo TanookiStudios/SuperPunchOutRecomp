@@ -66,15 +66,16 @@ index f55baf8..15db365 100644
  void dma_primeHdmaFirstLine(Dma* dma);
  uint64_t dma_hdmaMasterEstimate(Dma* dma);
 diff --git a/runner/src/snes/interp_bridge.c b/runner/src/snes/interp_bridge.c
-index c1e48eb..fe27439 100644
+index c1e48eb..b681bde 100644
 --- a/runner/src/snes/interp_bridge.c
 +++ b/runner/src/snes/interp_bridge.c
-@@ -609,7 +609,7 @@ static int      s_interp_bounce_recomp_base = -1;
+@@ -609,7 +609,8 @@ static int      s_interp_bounce_recomp_base = -1;
   * never a stale interpreter PC. Always published -- one store per step, next
   * to the step ring's -- so attribution never depends on what was armed. */
  uint32_t g_interp_wlog_pc24 = 0;
 -static uint32_t s_lle_bounce_exclusions[16];
 +static uint32_t s_lle_bounce_exclusions[64];
++
  static size_t   s_lle_bounce_exclusion_count;
  
  /* Debug lever (SNESRECOMP_LLE_INTERP_TARGET_FILE): a file of hex PC24s, one per

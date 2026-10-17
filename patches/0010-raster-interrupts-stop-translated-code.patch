@@ -1,0 +1,22 @@
+diff --git a/runner/src/beam_frame_driver.c b/runner/src/beam_frame_driver.c
+index d6086b3..66ea098 100644
+--- a/runner/src/beam_frame_driver.c
++++ b/runner/src/beam_frame_driver.c
+@@ -170,7 +170,16 @@ void snes_beam_frame_driver_run_frame(void) {
+     if (s_wai_halted && irq_line_asserted())
+       s_wai_halted = false;
+     if (!s_wai_halted && !irq_wanted()) {
+-      interp_bridge_set_master_deadline(frame_end);
++      /* Stop at the next raster match as well as at the field's end: a
++       * translated routine only looks at the deadline at its block entries,
++       * so with the field's end as the only deadline a long one ran straight
++       * past an interrupt that was due, and the handler (this game turns the
++       * picture on in one) ran late. */
++      uint64_t deadline = frame_end;
++      const uint32_t until_irq = snes_master_clocks_until_irq(g_snes);
++      if (until_irq && g_cpu.master_cycles + until_irq + 1 < deadline)
++        deadline = g_cpu.master_cycles + until_irq + 1;
++      interp_bridge_set_master_deadline(deadline);
+       (void)interp_bridge_run_until_quiescent(&g_cpu, s_resume_pc);
+       interp_bridge_set_master_deadline(0);
+       update_resume_pc();

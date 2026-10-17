@@ -45,13 +45,20 @@ void GameRunOneFrame(void)
      * relies on them staying idle until the next field. */
     g_dma_hdma_midframe_inert = 2;
     static int excluded;
-    if (!excluded) {
-        /* Long routines that run to the end once started: left translated they
-         * hold back the game's raster interrupts, which turns the picture on
-         * late and hides the top bar. They run in the interpreter instead.
-         * (Found by comparing pictures with Snes9x, see tests/ref/README.md.) */
-        static const uint32 kInterpTargets[] = { 0x00CB50, 0x01F803, 0x00F440, 0x00FFA3, 0x018006, 0x088035,
-                                              0x00CA91, 0x01F800 };
+    if (!excluded && !getenv("SPO_NO_EXCLUSIONS")) {
+        /* Four routines left to the original code: played as translated code, the title and the
+         * "How to win" demo stop matching Snes9x frame for frame (see tests/ref/README.md). Raster
+         * interrupts no longer wait for translated code (patches/0010), so nothing else needs this. */
+        static const uint32 kInterpTargets[] = { 0x00F440, 0x00FFA3, 0x018006, 0x088035 };
+        const char *only = getenv("SPO_EXCLUDE");   /* dev switch: "00F440,00FFA3" replaces the list below */
+        if (only && *only) {
+            uint32 list[64]; size_t n = 0;
+            for (const char *q = only; *q && n < 64; ) {
+                list[n++] = (uint32)strtoul(q, (char **)&q, 16);
+                while (*q == ',') ++q;
+            }
+            interp_bridge_set_lle_bounce_exclusions(list, n);
+        } else
         interp_bridge_set_lle_bounce_exclusions(kInterpTargets, sizeof kInterpTargets / sizeof kInterpTargets[0]);
         excluded = 1;
     }
