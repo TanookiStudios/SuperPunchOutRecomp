@@ -9,6 +9,7 @@
 #include "desktop/sdl_compat.h"
 #include "snes/dsp.h"          /* g_dsp_voice_mute_mask */
 #include "superpunchout_extras.h"
+#include "superpunchout_signature.h"
 
 #define VOICES 8
 #define FIGHTERS 16
@@ -36,8 +37,8 @@ static const char *const kFighters[1 + FIGHTERS] = {
                  "some nostalgia and you got knocked out by Mr. Sandman more times than you'd like to " \
                  "admit, feel free to drop me a tiny tip. It really helps!"
 
-static const char *const kBlank[] = { " " };
-#define INFO(key, label, desc) { key, "About", label, desc, RECOMP_RUNTIME_UI_CHOICE, 0, 0, 1, kBlank, 1, NULL }
+#define PARA(key, text) { key, "About", "", text, RECOMP_RUNTIME_UI_PARAGRAPH, 0, 0, 0, NULL, 0, NULL, NULL }
+static const RecompRuntimeUiStrokes kSignature = { MADDIE_SIGNATURE_W, MADDIE_SIGNATURE_H, kMaddieSignatureData };
 
 #define MUTE_DESC "Silences one of the SNES's eight sound voices. The game decides what each voice plays."
 #define BOOL_ROW(key, label, desc) { key, "Cheats", label, desc, \
@@ -62,22 +63,15 @@ const RecompRuntimeUiItem kSpoMenuItems[SPO_MENU_ITEM_COUNT] = {
       RECOMP_RUNTIME_UI_CHOICE, 0, FIGHTERS, 1, kFighters, 1 + FIGHTERS, NULL },
     { "spo.skip", "Cheats", "Skip to the next fight", "Ends the fight you are in as a win.",
       RECOMP_RUNTIME_UI_ACTION, 0, 0, 0, NULL, 0, NULL },
-    /* The About section of the Esc menu. The menu shows one line per label and per description, so the
-     * letter is broken into short lines. The rows stay selectable so the keys can scroll through it. */
-    INFO("spo.about.1", "Hi, I'm Maddie. I make apps and games on my own at Tanooki Studios.", ""),
-    INFO("spo.about.2", "Super Punch-Out!! is one of my favorite SNES games, and I",
-                        "wanted it to run on a modern computer with crisp pixels,"),
-    INFO("spo.about.3", "controllers that just work, and a few cheats for when a", "fighter is being mean."),
-    INFO("spo.about.4", "It's free, and it'll stay free. You bring your own copy of the",
-                        "game; nothing from the original cartridge ships with this."),
-    INFO("spo.about.5", "It isn't made by or affiliated with Nintendo.", ""),
-    INFO("spo.about.6", "Making apps (including some decomps) is how I pay my bills.",
-                        "If this game brought you some nostalgia and you got knocked out"),
-    INFO("spo.about.7", "by Mr. Sandman more times than you'd like to admit, feel free",
-                        "to drop me a tiny tip. It really helps!"),
+    /* The About section of the Esc menu: the letter as wrapped paragraphs, the signature, then the tip
+     * button. The rows stay selectable so the keys can scroll through them. */
+    PARA("spo.about.1", ABOUT_P1),
+    PARA("spo.about.2", ABOUT_P2),
+    PARA("spo.about.3", ABOUT_P3),
+    PARA("spo.about.4", ABOUT_P4),
+    { "spo.about.sig", "About", "", "", RECOMP_RUNTIME_UI_STROKES, 0, 0, 0, NULL, 0, NULL, &kSignature },
     { "spo.about.tip", "About", "Leave a Tip", "Opens tanookistudios.com/SupportMe in your browser.",
-      RECOMP_RUNTIME_UI_ACTION, 0, 0, 0, NULL, 0, NULL },
-    INFO("spo.about.sig", "- Maddie", "Tanooki Studios"),
+      RECOMP_RUNTIME_UI_ACTION, 0, 0, 0, NULL, 0, NULL, NULL },
 };
 
 static void save(void) {
@@ -124,8 +118,7 @@ static int mute_voice(const RecompRuntimeUiItem *it) {
 static int get_value(void *ctx, const RecompRuntimeUiItem *it, int *out) {
     (void)ctx;
     int v = mute_voice(it);
-    if (it->key && !strncmp(it->key, "spo.about.", 10)) *out = 0;   /* reading rows */
-    else if (v >= 0) *out = (g_dsp_voice_mute_mask >> v) & 1;
+    if (v >= 0) *out = (g_dsp_voice_mute_mask >> v) & 1;
     else if (!strcmp(it->key, "spo.meter")) *out = g_spo_cheats.infinite_stars;
     else if (!strcmp(it->key, "spo.hit")) *out = g_spo_cheats.cant_be_hit;
     else if (!strcmp(it->key, "spo.rest")) *out = g_spo_cheats.infinite_rest;

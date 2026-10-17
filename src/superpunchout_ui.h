@@ -7,7 +7,7 @@
 
 #include "recomp_runtime_ui.h"
 
-#define SPO_MENU_ITEM_COUNT 22
+#define SPO_MENU_ITEM_COUNT 19
 #define SPO_LAUNCHER_ITEM_COUNT 13   /* the rows before the About section */
 extern const RecompRuntimeUiItem kSpoMenuItems[SPO_MENU_ITEM_COUNT];
 extern const RecompRuntimeUiCallbacks kSpoMenuCallbacks;
