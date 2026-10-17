@@ -36,7 +36,13 @@ APP="dist/Super Punch-Out.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp build-mac/SuperPunchOutRecomp "$APP/Contents/MacOS/SuperPunchOut"
-cp -R build-mac/assets "$APP/Contents/MacOS/assets"
+# Inside an .app, SDL looks for the launcher's fonts, pictures (icon, signature) and the controller database
+# in Contents/Resources, NOT beside the program: put them there or the launcher shows a plain font and no
+# icon or signature.
+cp -R build-mac/assets "$APP/Contents/Resources/assets"
+for need in img/maddie-signature.png img/brand_mark.tga fonts/LatoLatin-Regular.ttf gamecontrollerdb.txt; do
+  [ -e "$APP/Contents/Resources/assets/$need" ] || { echo "make_app: $need is missing from the app's Resources/assets" >&2; exit 1; }
+done
 [ -d build-mac/mods ] && cp -R build-mac/mods "$APP/Contents/MacOS/mods"
 cp assets/icon/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 cp LICENSE THIRD_PARTY_NOTICES.md "$APP/Contents/Resources/"
